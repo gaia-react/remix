@@ -6,19 +6,21 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "prepare": "is-ci || husky",
+    "prepare": "is-ci || husky && npx playwright install --with-deps",
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "start": "remix-serve ./build/server/index.js",
     "lint": "eslint --fix --max-warnings=0 --ext js,jsx,ts,tsx app --cache --cache-location ./node_modules/.cache/eslint .",
-    "lint-all": "npm run typecheck && npm run lint && npm run format && npm run stylelint",
     "lint-dry": "eslint --fix-dry-run --max-warnings=0 --ext js,jsx,ts,tsx app --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint-all": "npm run typecheck && npm run lint && npm run format && npm run stylelint",
     "format": "prettier --ignore-path .prettierignore --write \"**/*.{ts,tsx,html,md,mdx,css,json}\"",
     "stylelint": "stylelint --fix app/**/*.css",
     "typecheck": "tsc",
     "test": "vitest",
     "test:ci": "vitest --run --passWithNoTests --coverage --bail 1",
     "test:lint-staged": "vitest --run --changed --passWithNoTests --bail 1",
+    "pw": "npx playwright test",
+    "pw-ui": "npx playwright test --ui",
     "chromatic": "cross-env SB=1 npx chromatic --only-changed --exit-once-uploaded --exit-zero-on-changes --skip '@(renovate/**|dependabot/**)'",
     "storybook": "cross-env SB=1 storybook dev -p 6006",
     "build-storybook": "cross-env SB=1 storybook build --test"
@@ -155,7 +157,7 @@
     "workerDirectory": "public"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20.17.0"
   },
   "packageManager": "pnpm@8.1.0+sha1.09ebf306075e96037432071992bb00340c263d85"
 }

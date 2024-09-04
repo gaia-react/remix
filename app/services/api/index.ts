@@ -97,7 +97,7 @@ export const api = async (url: string, options?: ApiOptions): Promise<any> => {
       if (process.env.NODE_ENV !== 'production') {
         // we output errors to the console in development/test environments
         // eslint-disable-next-line no-console
-        console.error(error);
+        console.error('API ERROR', error);
       }
       // It's better to handle errors in the caller than globally
       throw error;

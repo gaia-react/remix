@@ -12,10 +12,44 @@ const ja = factory({
   user: user.schema,
 });
 
-en.user.create(user.en);
-ja.user.create(user.ja);
+export const resetTestData = () => {
+  en.user.delete({
+    where: {
+      id: {
+        equals: '1',
+      },
+    },
+  });
+  ja.user.delete({
+    where: {
+      id: {
+        equals: '1',
+      },
+    },
+  });
 
-things.en.forEach(en.things.create);
-things.ja.forEach(ja.things.create);
+  en.things.deleteMany({
+    where: {
+      id: {
+        notIn: ['0'],
+      },
+    },
+  });
+  ja.things.deleteMany({
+    where: {
+      id: {
+        notIn: ['0'],
+      },
+    },
+  });
+
+  en.user.create(user.en);
+  ja.user.create(user.ja);
+
+  things.en.forEach(en.things.create);
+  things.ja.forEach(ja.things.create);
+};
+
+resetTestData();
 
 export default {en, ja} as Record<string, typeof en>;

@@ -3,7 +3,13 @@ import {set} from 'date-fns';
 import type {Language} from '~/languages';
 import {LANGUAGES} from '~/languages';
 
-export const DELAY = process.env.NODE_ENV === 'test' ? 0 : 250;
+export const DELAY =
+  (
+    process.env.NODE_ENV === 'test' ||
+    process.env.npm_lifecycle_script === 'playwright'
+  ) ?
+    0
+  : 250;
 
 export const getLanguage = (request: Request) =>
   (pick(LANGUAGES, request.headers.get('Accept-Language') ?? 'en') ??

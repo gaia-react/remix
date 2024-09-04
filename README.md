@@ -6,7 +6,7 @@ GAIA is a **fully comprehensive** React framework for building modern web applic
 
 It comes with **EVERYTHING** you need, fully configured and ready to go.
 
-The DX (Developer Experience) is top-notch.
+The Developer Experience (DX) is designed to be top-notch.
 
 - Automated and robust code quality tools are all set up, keeping your code clean and tech debt to a minimum.
 - Best practices are baked into the source code examples for you to follow.
@@ -14,6 +14,8 @@ The DX (Developer Experience) is top-notch.
 - Code Generation scripts speed up development and simplify workflow.
 - Utilities, hooks, authentication, internationalization, components, services, styles, test, stories, and other code examples are all included to help you get started quickly.
 - While GAIA comes with recommended packages, conventions, and settings, you're free to change them to suit your needs.
+
+No matter what your skill level or experience, GAIA will make your life and your code better.
 
 Read the [GAIA Documentation](https://github.io/gaia-framework) for detailed information.
 
@@ -23,26 +25,28 @@ Read the [GAIA Documentation](https://github.io/gaia-framework) for detailed inf
 
 The GAIA Flash Framework revolutionized Flash website development and became the most popular Flash framework in the world (second only to Adobe Flex, which was focused on enterprise applications). It was used to build over 100,000 Flash sites and relied upon by every major digital agency worldwide.
 
-This is its spiritual successor. The GAIA Framework has been reborn as a React framework. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React framework available.
+This GAIA Framework is its spiritual successor. It has been reborn as a React framework. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React framework available.
 
 ## Installation
 
-All you need to do is install and get to work.
+Make sure you have [Node.js](https://nodejs.org/en/) >=20.17.0 LTS installed.
+
+All you need to do is run this installation command and get to work.
+
 
 ```sh
 npx create-remix@latest --template gaia-react/remix
 ```
 
+You can choose to install packages when prompted, or do it manually.
+
 ### Install packages
 
 ```sh
 npm install
-npx playwright install
 ```
 
 ## Development
-
-Make sure you have [Node.js](https://nodejs.org/en/) 20.17.0 LTS installed.
 
 Duplicate the `.env.example` file and name it `.env`
 
