@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+
+.gitignore
+.prettierignore
+
+/public/build
+.env
+

@@ -1,0 +1,14 @@
+{
+    "{app,.storybook}/**/*.{ts,tsx}": [
+        "eslint --fix --max-warnings=0 --cache --cache-location ./node_modules/.cache/eslint .",
+        "prettier --write"
+    ],
+    "app/**/*.css": [
+        "stylelint --fix",
+        "prettier --write"
+    ],
+    "app/**/*.json": [
+        "eslint --cache --fix",
+        "prettier --write"
+    ]
+}

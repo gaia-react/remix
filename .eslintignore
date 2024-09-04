@@ -1,0 +1,10 @@
+node_modules
+.eslintrc.cjs
+/public
+!.storybook
+!.playwright
+package.json
+package-lock.json
+tsconfig.json
+coverage
+generated.ts

@@ -1,0 +1,33 @@
+node_modules
+
+# remix
+/.cache
+/build
+/public/build
+.env
+
+# IDEs
+.idea
+.vscode
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Testing
+/playwright
+.playwright/.cache/
+.playwright/output/
+coverage
+.jest-cache
+
+# Storybook
+/storybook-static/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
