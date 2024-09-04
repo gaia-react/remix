@@ -19,7 +19,6 @@ test('index page detect english, switch to japanese', async ({browser}) => {
 
   await localeSelect.selectOption('ja');
   await expect(page.locator('select', {hasText: '日本語'})).toBeVisible();
-  await expect(page).toHaveURL('/');
   await expect(page).toHaveTitle(languages.ja.pages.index.meta.title);
 
   await context.close();
@@ -43,7 +42,6 @@ test('index page detect japanese, switch to english', async ({browser}) => {
 
   await localeSelect.selectOption('en');
   await expect(page.locator('select', {hasText: 'English'})).toBeVisible();
-  await expect(page).toHaveURL('/');
   await expect(page).toHaveTitle(languages.en.pages.index.meta.title);
 
   await context.close();

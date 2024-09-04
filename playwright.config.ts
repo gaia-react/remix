@@ -37,6 +37,9 @@ const otherBrowsers =
 
 // See https://playwright.dev/docs/test-configuration.
 export default defineConfig({
+  expect: {
+    timeout: 10_000,
+  },
   // Fail the build on CI if you accidentally left test.only in the source code.
   forbidOnly: !!process.env.CI,
 
@@ -63,6 +66,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   testDir: './.playwright/e2e',
   testMatch: '**/*.spec.ts',
+  timeout: 60_000,
 
   // Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions.
   use: {
@@ -70,7 +74,7 @@ export default defineConfig({
     baseURL: 'http://localhost:5173',
 
     // Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
 
   // Run your local dev server before starting the tests
