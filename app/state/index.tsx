@@ -1,6 +1,6 @@
 /* eslint-disable canonical/filename-match-exported */
 import type {FC, ReactNode} from 'react';
-import type {User} from '~/services/auth/types';
+import type {User} from '~/services/api/auth/types';
 import {ExampleProvider} from '~/state/example';
 import type {Theme} from '~/state/theme';
 import {ThemeProvider} from '~/state/theme';

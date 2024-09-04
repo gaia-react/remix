@@ -17,15 +17,8 @@ export const Accept = {
     'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 } as const;
 
-export const ContentType = {
-  FORM_URLENCODED: 'application/x-www-form-urlencoded',
-  JSON: 'application/json',
-  MULTIPART_FORM_DATA: 'multipart/form-data',
-} as const;
-
 type ApiOptions = {
   accept?: (typeof Accept)[keyof typeof Accept];
-  contentType?: (typeof ContentType)[keyof typeof ContentType];
   data?: FormData | Record<string, unknown>;
   headers?: Headers | Record<string, string>;
   language?: Language;
@@ -38,7 +31,6 @@ type ApiOptions = {
 export const api = async (url: string, options?: ApiOptions): Promise<any> => {
   const {
     accept = Accept.JSON,
-    contentType = ContentType.JSON,
     data,
     headers,
     language,
@@ -61,7 +53,7 @@ export const api = async (url: string, options?: ApiOptions): Promise<any> => {
     Accept: accept,
     'Accept-Language': await getAcceptLanguage({language, request}),
     // Allow Content-Type to be automatically determined when body is FormData
-    'Content-Type': body instanceof FormData ? undefined : contentType,
+    'Content-Type': body instanceof FormData ? undefined : 'application/json',
   });
 
   return fetch(
@@ -73,6 +65,10 @@ export const api = async (url: string, options?: ApiOptions): Promise<any> => {
     })
   )
     .then(async (response) => {
+      if (response.status >= 400) {
+        throw response;
+      }
+
       if (
         response.status === 204 ||
         response.status === 205 ||
@@ -95,9 +91,9 @@ export const api = async (url: string, options?: ApiOptions): Promise<any> => {
     })
     .catch((error) => {
       if (process.env.NODE_ENV !== 'production') {
-        // we output errors to the console in development/test environments
+        // output errors to the console in development/test environments
         // eslint-disable-next-line no-console
-        console.error('API ERROR', error);
+        console.error('API Error\n', error);
       }
       // It's better to handle errors in the caller than globally
       throw error;

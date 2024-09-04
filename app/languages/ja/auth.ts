@@ -1,11 +1,7 @@
 export default {
-  forgotPassword: {
-    title: 'Forgot Password',
-  },
-  login: {
-    title: 'Login',
-  },
-  signup: {
-    title: 'Sign Up',
-  },
+  email: 'メールアドレス',
+  emailPlaceholder: 'user@domain.jp',
+  login: 'ログイン',
+  logout: 'ログアウト',
+  password: 'パスワード',
 };

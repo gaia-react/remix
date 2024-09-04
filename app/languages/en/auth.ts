@@ -1,11 +1,7 @@
 export default {
-  forgotPassword: {
-    title: 'Forgot Password',
-  },
-  login: {
-    title: 'Login',
-  },
-  signup: {
-    title: 'Sign Up',
-  },
+  email: 'Email',
+  emailPlaceholder: 'user@domain.com',
+  login: 'Login',
+  logout: 'Logout',
+  password: 'Password',
 };

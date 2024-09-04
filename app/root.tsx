@@ -9,6 +9,7 @@ import {useChangeLanguage} from 'remix-i18next/react';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
 import i18next from '~/i18next.server';
+import {getAuthenticatedUser} from '~/sessions.server/auth';
 import {getLanguageSession} from '~/sessions.server/language';
 import {getThemeSession} from '~/sessions.server/theme';
 import State from '~/state';
@@ -23,6 +24,8 @@ config.autoAddCss = false;
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
   const isProduction = isProductionHost(request);
+
+  const user = await getAuthenticatedUser(request);
 
   const languageSession = await getLanguageSession(request);
 
@@ -39,6 +42,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
       language,
       noIndex: !isProduction,
       theme: themeSession.getTheme(),
+      user,
     },
     {headers}
   );
@@ -86,7 +90,7 @@ const AppWithState = () => {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <State theme={data.theme}>
+    <State theme={data.theme} user={data.user}>
       <App />
     </State>
   );

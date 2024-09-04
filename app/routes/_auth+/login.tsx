@@ -4,25 +4,35 @@ import type {
   MetaFunction,
 } from '@remix-run/node';
 import {json} from '@remix-run/node';
+import {AuthorizationError} from 'remix-auth';
 import i18next from '~/i18next.server';
 import LoginPage from '~/pages/Auth/LoginPage';
-import {requireNoSession} from '~/sessions.server/auth';
+import {authenticator, requireNotAuthenticated} from '~/sessions.server/auth';
+import {tryCatch} from '~/utils/function';
 
 export const action: ActionFunction = async ({request}) => {
-  const formData = await request.formData();
+  const [, error] = await tryCatch(async () =>
+    authenticator.authenticate('email-password', request, {
+      successRedirect: '/profile',
+    })
+  );
 
-  if (!formData.has('email')) {
-    return json(null);
+  if (error) {
+    if (error instanceof Response) {
+      return error;
+    }
+
+    if (error instanceof AuthorizationError) {
+      return {error: 'invalidCredentials'};
+    }
   }
-
-  return json({ok: true});
 };
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
-  await requireNoSession(request);
+  await requireNotAuthenticated(request);
 
-  const t = await i18next.getFixedT(request);
-  const title = t('login.title', {ns: 'auth'});
+  const t = await i18next.getFixedT(request, 'auth');
+  const title = t('login');
 
   return json({title});
 };
