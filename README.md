@@ -10,10 +10,29 @@ The Developer Experience (DX) is designed to be top-notch.
 
 - Automated and robust code quality tools are all set up, keeping your code clean and tech debt to a minimum.
 - Best practices are baked into the source code examples for you to follow.
-- Unit, integration, visual regression, and end-to-end tests are all included.
-- Code Generation scripts speed up development and simplify workflow.
-- Utilities, hooks, authentication, internationalization, components, services, styles, test, stories, and other code examples are all included to help you get started quickly.
-- While GAIA comes with recommended packages, conventions, and settings, you're free to change them to suit your needs.
+- Unit, integration, visual regression, and end-to-end tests are set up.
+- Utilities, hooks, authentication, components, services, styles, tests, stories, and other code examples are all included to help you get started quickly.
+- While GAIA comes with recommended packages, conventions, and settings, you're free to change them to suit your needs!
+
+GAIA has many great project features built-in:
+
+- Built with [Remix](https://remix.run/), the best full-stack React framework for the modern web
+- Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
+- [TailwindCSS](https://tailwindcss.com/) for styling, along with CSS Module support
+- [Zod](https://zod.dev/) for data validation and types
+- Robust ESLint ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
+- [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks
+- A complete test suite with Vitest, React Testing Library, and PlayWright
+- [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a Remix Stub decorator included
+- [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking  
+- [FontAwesome](https://fontawesome.com/) icons
+- [RVF](https://www.rvf-js.io/) for form management and validation
+- Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
+- A wrapper around fetch that simplifies API calls
+- Lots of example components, ready for you to use and modify
+- Useful utility functions and hooks
+- Light and Dark Mode support
+- And much more!
 
 No matter what your skill level or experience, GAIA will make your life and your code better.
 
