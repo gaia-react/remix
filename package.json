@@ -61,7 +61,7 @@
     "@faker-js/faker": "9.0.0",
     "@mswjs/data": "0.16.1",
     "@playwright-testing-library/test": "4.5.0",
-    "@playwright/test": "1.47.0",
+    "@playwright/test": "1.46.1",
     "@remix-run/dev": "2.11.2",
     "@remix-run/testing": "2.11.2",
     "@storybook/addon-essentials": "8.2.9",
