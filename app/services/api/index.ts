@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {Language} from '~/languages';
 import {toHeadersObject} from '~/utils/http';
 import {compact, toCamelCase} from '~/utils/object';
 import {
   API_USES_SNAKE_CASE,
+  BASE_URL,
   getAcceptLanguage,
-  getBaseUrl,
   getBody,
   getParams,
   getSafeUrl,
@@ -28,7 +27,7 @@ type ApiOptions = {
   request?: Request;
 };
 
-export const api = async (url: string, options?: ApiOptions): Promise<any> => {
+export const api = async (url: string, options?: ApiOptions) => {
   const {
     accept = Accept.JSON,
     data,
@@ -42,7 +41,7 @@ export const api = async (url: string, options?: ApiOptions): Promise<any> => {
 
   const body = getBody(data);
   const safeUrl =
-    url.startsWith('http') ? url : `${getBaseUrl()}${getSafeUrl(url)}`;
+    url.startsWith('http') ? url : `${BASE_URL}${getSafeUrl(url)}`;
 
   const safeParams = getParams(params);
   const q = url.includes('?') ? '&' : '?';

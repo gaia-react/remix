@@ -1,7 +1,7 @@
 import {http} from 'msw';
 import database from 'test/mocks/database';
 import {getLanguage} from 'test/utils';
-import {THINGS_URL} from '~/services/api/things/urls';
+import {THINGS_URL} from '~/services/api/urls';
 
 const one = http.get(
   `${process.env.API_URL}${THINGS_URL}/:id`,

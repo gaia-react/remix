@@ -61,7 +61,7 @@ export const getParams = (params?: Record<string, unknown>) => {
   return urlSearchParams.toString();
 };
 
-export const getBaseUrl = () => {
+const getBaseUrl = () => {
   if (process.env.API_URL) {
     // server api call
     return process.env.API_URL;
@@ -75,6 +75,8 @@ export const getBaseUrl = () => {
   // fallback
   return '';
 };
+
+export const BASE_URL = getBaseUrl();
 
 // Ensures leading and trailing slash as needed
 export const getSafeUrl = (url: string) => {

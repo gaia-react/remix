@@ -7,7 +7,7 @@ import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import i18next from '~/i18next.server';
 import AllThingsPage from '~/pages/Public/Things/AllThingsPage';
-import {deleteThing, getThings} from '~/services/api/things/requests.server';
+import {deleteThing, getAllThings} from '~/services/api/things/requests.server';
 import {ThingsProvider} from '~/services/api/things/state';
 
 export const action: ActionFunction = async ({request}) => {
@@ -31,7 +31,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const title = t('things.meta.title');
   const description = t('things.meta.description');
 
-  const things = await getThings(request);
+  const things = await getAllThings(request);
 
   return json({description, things, title});
 };

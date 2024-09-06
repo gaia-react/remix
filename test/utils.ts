@@ -25,8 +25,5 @@ const base = set(new Date(), {
   year: new Date().getFullYear() + 1,
 });
 
-type DateValues = Parameters<typeof set>[1];
-
-const date = (values?: DateValues): Date => (values ? set(base, values) : base);
-
-export default date;
+export const date = (values?: Parameters<typeof set>[1]): Date =>
+  values ? set(base, values) : base;

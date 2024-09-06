@@ -2,7 +2,7 @@ import {http} from 'msw';
 import SparkMD5 from 'spark-md5';
 import database from 'test/mocks/database';
 import {getLanguage} from 'test/utils';
-import {LOGIN_URL} from '~/services/api/auth/urls';
+import {LOGIN_URL} from '~/services/api/urls';
 import {tryCatch} from '~/utils/function';
 
 export default http.post(

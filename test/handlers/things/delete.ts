@@ -1,7 +1,7 @@
 import {delay, http} from 'msw';
 import database from 'test/mocks/database';
 import {DELAY, getLanguage} from 'test/utils';
-import {THINGS_URL} from '~/services/api/things/urls';
+import {THINGS_URL} from '~/services/api/urls';
 
 export default http.delete(
   `${process.env.API_URL}${THINGS_URL}/:id`,

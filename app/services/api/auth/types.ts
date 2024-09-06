@@ -1,10 +1,4 @@
-import {z} from 'zod';
-
-export const userSchema = z.object({
-  email: z.string().email(),
-  familyName: z.string(),
-  givenName: z.string(),
-  id: z.string(),
-});
+import type {z} from 'zod';
+import type {userSchema} from './parsers';
 
 export type User = z.infer<typeof userSchema>;
