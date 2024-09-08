@@ -2,7 +2,7 @@
 
 <img src="./app/assets/images/gaia-logo.svg" height="100" alt="GAIA"/>
 
-GAIA is a **fully comprehensive** React framework for building modern web applications.
+GAIA is a **fully comprehensive** framework for building modern React web applications.
 
 It comes with **EVERYTHING** you need, fully configured and ready to go.
 
@@ -10,9 +10,9 @@ The Developer Experience (DX) is designed to be top-notch.
 
 - Automated and robust code quality tools are all set up, keeping your code clean and tech debt to a minimum.
 - Best practices are baked into the source code examples for you to follow.
-- Unit, integration, visual regression, and end-to-end tests are set up.
 - Utilities, hooks, authentication, components, services, styles, tests, stories, and other code examples are all included to help you get started quickly.
-- While GAIA comes with recommended packages, conventions, and settings, you're free to change them to suit your needs!
+- Unit, integration, visual regression, and end-to-end tests are set up.
+- While GAIA comes with recommended packages, conventions, and settings, you're free to change or remove them to suit your needs!
 
 GAIA has many great project features built-in:
 
@@ -22,23 +22,23 @@ GAIA has many great project features built-in:
 - [Zod](https://zod.dev/) for data validation and types
 - Robust ESLint ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
 - [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks
-- A complete test suite with Vitest, React Testing Library, and PlayWright
-- [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a Remix Stub decorator included
+- A complete test suite with [Vitest](https://vitest.dev), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [PlayWright](https://playwright.dev/docs/intro)
+- [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a [Remix Stub](https://remix.run/docs/en/main/utils/create-remix-stub) decorator included
 - [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking  
 - [FontAwesome](https://fontawesome.com/) icons
 - [RVF](https://www.rvf-js.io/) for form management and validation
 - Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
 - A wrapper around fetch that simplifies API calls
-- Lots of example components, ready for you to use and modify
+- Many example components, ready for you to use and modify
 - Useful utility functions and hooks
-- Light and Dark Mode support
+- Light and dark mode support
 - And much more!
 
 No matter what your skill level or experience, GAIA will make your life and your code better.
 
-Read the [GAIA Documentation](https://github.io/gaia-framework) for detailed information.
+Read the [GAIA Documentation](https://github.io/gaia-framework) for detailed information about working with GAIA.
 
-### Is this associated with the GAIA Flash Framework?
+## Is this associated with the GAIA Flash Framework?
 
 **Yes!**
 
@@ -48,7 +48,7 @@ This GAIA Framework is its spiritual successor. It has been reborn as a React fr
 
 ## Installation
 
-Make sure you have [Node.js](https://nodejs.org/en/) >=20.17.0 LTS installed.
+Make sure you have [Node.js](https://nodejs.org/en/) >=20.17.0 LTS installed, preferably via [nvm](https://github.com/nvm-sh/nvm).
 
 All you need to do is run this installation command and get to work.
 
@@ -83,13 +83,13 @@ npm run dev
 
 ### Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) configured. You're free to change it if you like.
+This template comes with [Tailwind CSS](https://tailwindcss.com/) configured, with some configuration and utilities, which you can change to suit your project.
 
 See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
 
 ### Icons
 
-[FontAwesome](https://fontawesome.com/) is configured. You're free to change it if you like.
+[FontAwesome](https://fontawesome.com/) is included. You're free to change it if you like.
 
 ### i18n
 
