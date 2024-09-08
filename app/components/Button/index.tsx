@@ -47,7 +47,7 @@ export const VARIANTS: Record<Variant, string> = {
   secondary:
     'border border-blue-500 bg-white text-blue-500 hover:bg-blue-50 disabled:hover:bg-white dark:border-blue-500 dark:bg-grey-900 dark:text-blue-100 dark:hover:bg-blue-900/15 dark:disabled:hover:bg-grey-900',
   tertiary:
-    'border border-grey-400 bg-grey-500 text-white hover:bg-grey-600 disabled:hover:bg-grey-500 dark:border-grey-500 dark:bg-grey-600 dark:hover:bg-grey-700 dark:disabled:hover:bg-grey-600',
+    'border border-grey-500 bg-grey-600 text-white hover:bg-grey-700 disabled:hover:bg-grey-600',
 };
 
 type MaybeIcon = {

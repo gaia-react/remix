@@ -154,7 +154,7 @@
   }
 
   .input-invalid {
-    @apply border-red-500 ring ring-red-600 ring-offset-0;
+    @apply border-red-500 ring-1 ring-red-600 ring-offset-0;
     @apply border-red-400 ring-red-600;
   }
 

@@ -1,13 +1,11 @@
 import {useTranslation} from 'react-i18next';
 import type {Meta, StoryFn} from '@storybook/react';
 import database from 'test/mocks/database';
-import faker from 'test/mocks/faker';
 import stubs from 'test/stubs';
 import type {Language} from '~/languages';
 import {ThingsProvider} from '~/services/api/things/state';
 import type {Thing} from '~/services/api/things/types';
 import {toCamelCase} from '~/utils/object';
-import {toInitialCap} from '~/utils/string';
 import ThingsGrid from '../index';
 
 const meta: Meta = {
@@ -44,14 +42,26 @@ export const LongStrings: StoryFn = () => {
     i18n: {language},
   } = useTranslation();
 
-  const things = database[language].things
-    .getAll()
-    .map((thing) => ({
-      ...thing,
-      description: toInitialCap(faker[language].lorem.words(30)),
-      name: toInitialCap(faker[language].lorem.words(20)),
-    }))
-    .map(toCamelCase) as Thing[];
+  const things: Thing[] =
+    language === 'en' ?
+      [
+        {
+          createdAt: '2024-01-01T12:00:00Z',
+          description:
+            'Aliquam eget scelerisque est. Aliquam sit amet elit quam. Maecenas vel eros semper, blandit lacus eget, ullamcorper nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas',
+          id: '1',
+          name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec tellus elementum, commodo ex et, vehicula dui.',
+        },
+      ]
+    : [
+        {
+          createdAt: '2024-01-01T12:00:00Z',
+          description:
+            '楽しだうお将視7聞練チマミエ器本コ同備ウテアヤ投北そさ整谷せふ人展ゆまラろ作真身レウオ図斉でうラ札催布そも方筋ゃ核集ユ旅代タ記将アス毎帳ひ。公ヒシ置造ちげ際廃談な黒百禁よかフた能健モセウ約81立ウノヘ極書せこでど連彦イす像写ネモレ測突げド属民時事ケムワレ面枠告ツヲ布椅トラ。',
+          id: '1',
+          name: '面かへしン動産いよば補現スぞ育国ヒチモ港廃フくち好94授ロノチカ真補くきト半東紙ロヌウ提宝ソヲステ給悩ざイが配自寄クヘラワ記驚ぽす際希熊べぽ受38免ぴげ',
+        },
+      ];
 
   return (
     <ThingsProvider things={things}>

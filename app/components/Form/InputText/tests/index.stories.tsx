@@ -16,7 +16,7 @@ export const Default: StoryFn = () => (
     <InputText label="Text Input" name="text" placeholder="Placeholder" />
     <InputText
       label="Text Input Max Length"
-      maxLength={50}
+      maxLength={20}
       name="textMax"
       placeholder="Placeholder"
     />
@@ -28,14 +28,14 @@ export const Default: StoryFn = () => (
     />
     <InputText
       error="This field is required"
-      label="Text Input Required Invalidated"
+      label="Text Input Invalid"
       name="textInvalid"
       placeholder="Placeholder"
       required={true}
     />
     <InputText
       disabled={true}
-      label="Disabled"
+      label="Text Input Disabled"
       name="textDisabled"
       placeholder="Disabled"
     />

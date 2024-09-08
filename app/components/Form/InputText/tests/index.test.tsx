@@ -33,9 +33,7 @@ describe('InputText', () => {
         'This is a long string!',
       ].join('')
     );
-    expect(input).toHaveValue(
-      'This is a long string!This is a long string!This i'
-    );
+    expect(input).toHaveValue('This is a long strin');
 
     await clear(input);
     await type(input, 'hello world');

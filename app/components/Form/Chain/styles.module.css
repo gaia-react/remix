@@ -1,0 +1,128 @@
+.chain {
+  @apply flex items-end;
+
+  > button,
+  > select,
+  > [type='text'],
+  > [type='email'],
+  > [type='url'],
+  > [type='password'],
+  > [type='number'],
+  > [type='date'],
+  > [type='datetime-local'],
+  > [type='month'],
+  > [type='search'],
+  > [type='tel'],
+  > [type='time'],
+  > [type='week'] {
+    &:first-child {
+      @apply rounded-r-none border-r-0;
+    }
+
+    &:last-child {
+      @apply rounded-l-none;
+    }
+
+    &:not(:first-child, :last-child) {
+      @apply rounded-none border-r-0;
+    }
+  }
+
+  > button {
+    &:first-child {
+      @apply rounded-l-md border-r-grey-400;
+    }
+
+    &:last-child {
+      @apply rounded-r-md border-l-grey-400;
+    }
+  }
+
+  > [role='presentation'] {
+    &:first-child {
+      select,
+      [type='text'],
+      [type='email'],
+      [type='url'],
+      [type='password'],
+      [type='number'],
+      [type='date'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='search'],
+      [type='tel'],
+      [type='time'],
+      [type='week'] {
+        @apply rounded-r-none border-r-0;
+      }
+    }
+
+    &:last-child {
+      select,
+      [type='text'],
+      [type='email'],
+      [type='url'],
+      [type='password'],
+      [type='number'],
+      [type='date'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='search'],
+      [type='tel'],
+      [type='time'],
+      [type='week'] {
+        @apply rounded-l-none;
+      }
+    }
+
+    &:not(:first-child, :last-child) {
+      select,
+      [type='text'],
+      [type='email'],
+      [type='url'],
+      [type='password'],
+      [type='number'],
+      [type='date'],
+      [type='datetime-local'],
+      [type='month'],
+      [type='search'],
+      [type='tel'],
+      [type='time'],
+      [type='week'] {
+        @apply rounded-none border-r-0;
+      }
+    }
+  }
+}
+
+.fullWidth {
+  > select,
+  > [type='text'],
+  > [type='email'],
+  > [type='url'],
+  > [type='password'],
+  > [type='number'],
+  > [type='date'],
+  > [type='datetime-local'],
+  > [type='month'],
+  > [type='search'],
+  > [type='tel'],
+  > [type='time'],
+  > [type='week'] {
+    @apply flex-grow;
+  }
+
+  > [role='presentation'] {
+    @apply flex-grow;
+  }
+}
+
+:global .dark {
+  :local .chain {
+    > button {
+      &:last-child {
+        @apply border-l-grey-600;
+      }
+    }
+  }
+}
