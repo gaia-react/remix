@@ -22,10 +22,12 @@ export const DEFAULT_DATE = set(TODAY, {
   year: 2000,
 });
 
-const schema = z.string().date();
+export const DEFAULT_VALUE = formatISO8601Date(DEFAULT_DATE);
+
+const iso8601DateSchema = z.string().date();
 
 export const getValues = (value: string) => {
-  const [year, month, date] = schema.parse(value).split('-');
+  const [year, month, date] = iso8601DateSchema.parse(value).split('-');
 
   return [year, month, date];
 };

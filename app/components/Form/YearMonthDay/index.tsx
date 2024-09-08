@@ -15,7 +15,14 @@ import {
 } from '~/utils/date';
 import FieldLabel from '../Field/FieldLabel';
 import Select from '../Select';
-import {DEFAULT_DATE, getSafeValue, getValues, MONTHS, YEARS} from './utils';
+import {
+  DEFAULT_DATE,
+  DEFAULT_VALUE,
+  getSafeValue,
+  getValues,
+  MONTHS,
+  YEARS,
+} from './utils';
 
 export type YearMonthDayProps = {
   className?: string;
@@ -38,7 +45,7 @@ const YearMonthDay = forwardRef<HTMLSelectElement, YearMonthDayProps>(
       onBlur,
       onChange,
       required,
-      value = '2000-01-01',
+      value = DEFAULT_VALUE,
     },
     ref
   ) => {
