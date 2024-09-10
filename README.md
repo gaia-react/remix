@@ -1,8 +1,10 @@
-# Welcome to the GAIA Framework!
+# Welcome to GAIA React!
 
 <img src="./app/assets/images/gaia-logo.svg" height="100" alt="GAIA"/>
 
-GAIA is a **fully comprehensive** framework for building modern React web applications.
+GAIA React is a **fully comprehensive** template for building modern React web applications.
+
+It is designed to be the best possible starting point for any professional React project.
 
 It comes with **EVERYTHING** you need, fully configured and ready to go.
 
@@ -20,15 +22,15 @@ GAIA has many great project features built-in:
 - Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
 - [TailwindCSS](https://tailwindcss.com/) for styling, along with CSS Module support
 - [Zod](https://zod.dev/) for data validation and types
-- Robust ESLint ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
+- Robust [ESLint](https://eslint.org/) ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
 - [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks
 - A complete test suite with [Vitest](https://vitest.dev), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [PlayWright](https://playwright.dev/docs/intro)
 - [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a [Remix Stub](https://remix.run/docs/en/main/utils/create-remix-stub) decorator included
-- [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking  
+- [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking
+- [RVF](https://www.rvf-js.io/) for form management and validation with working examples
 - [FontAwesome](https://fontawesome.com/) icons
-- [RVF](https://www.rvf-js.io/) for form management and validation
 - Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
-- A wrapper around fetch that simplifies API calls
+-A convenient and flexible wrapper around fetch that simplifies API calls
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
 - Light and dark mode support
@@ -44,7 +46,7 @@ Read the [GAIA Documentation](https://gaia-react.github.io/docs/) for detailed i
 
 The GAIA Flash Framework revolutionized Flash website development and became the most popular Flash framework in the world (second only to Adobe Flex, which was focused on enterprise applications). It was used to build over 100,000 Flash sites and relied upon by every major digital agency worldwide.
 
-This GAIA Framework is its spiritual successor. It has been reborn as a React framework. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React framework available.
+GAIA React is its spiritual successor. It has been reborn as a React template. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React template available.
 
 ## Installation
 
