@@ -11,7 +11,7 @@ import {authenticator, requireNotAuthenticated} from '~/sessions.server/auth';
 import {tryCatch} from '~/utils/function';
 
 export const action: ActionFunction = async ({request}) => {
-  const [, error] = await tryCatch(async () =>
+  const [error] = await tryCatch(async () =>
     authenticator.authenticate('email-password', request, {
       successRedirect: '/profile',
     })

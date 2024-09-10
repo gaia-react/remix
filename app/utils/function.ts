@@ -1,5 +1,7 @@
-type TryCatchSuccess<T> = [result: Awaited<T>, error: undefined];
-type TryCatchError = [result: undefined, error: Error];
+// Based on forthcoming Safe Assignment Operator ?=
+// https://github.com/arthurfiorette/proposal-safe-assignment-operator
+type TryCatchSuccess<T> = [error: null | undefined, result: Awaited<T>];
+type TryCatchError = [error: Error, result: null | undefined];
 type TryCatchResult<T> = TryCatchError | TryCatchSuccess<T>;
 
 export const tryCatch = async <T, A extends readonly unknown[]>(
@@ -17,10 +19,10 @@ export const tryCatch = async <T, A extends readonly unknown[]>(
   }
 
   if (result) {
-    return [result, undefined] as TryCatchSuccess<T>;
+    return [undefined, result] as TryCatchSuccess<T>;
   }
 
-  return [undefined, error] as TryCatchError;
+  return [error, undefined] as TryCatchError;
 };
 
 export const noop = () => {};

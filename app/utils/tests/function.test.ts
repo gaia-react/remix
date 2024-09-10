@@ -4,8 +4,8 @@ import {tryCatch} from '../function';
 describe('function utils', () => {
   test('tryCatch result', async () => {
     expect(await tryCatch((value: number) => 10 / value, 5)).toEqual([
-      2,
       undefined,
+      2,
     ]);
   });
 
@@ -14,6 +14,6 @@ describe('function utils', () => {
       await tryCatch(() => {
         throw new Error('failed');
       })
-    ).toEqual([undefined, new Error('failed')]);
+    ).toEqual([new Error('failed'), undefined]);
   });
 });

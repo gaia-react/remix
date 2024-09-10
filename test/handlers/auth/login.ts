@@ -8,7 +8,7 @@ import {tryCatch} from '~/utils/function';
 export default http.post(
   `${process.env.API_URL}${LOGIN_URL}`,
   async ({request}) => {
-    const [login, error] = await tryCatch(async () => {
+    const [error, login] = await tryCatch(async () => {
       const data = await request.formData();
 
       return Object.fromEntries(data.entries());

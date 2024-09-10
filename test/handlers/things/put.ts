@@ -7,7 +7,7 @@ import {tryCatch} from '~/utils/function';
 export default http.put(
   `${process.env.API_URL}${THINGS_URL}/:id`,
   async ({params, request}) => {
-    const [thing, error] = await tryCatch(async () => {
+    const [error, thing] = await tryCatch(async () => {
       const data = await request.formData();
 
       return Object.fromEntries(data.entries());
