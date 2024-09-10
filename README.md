@@ -36,7 +36,7 @@ GAIA has many great project features built-in:
 
 No matter what your skill level or experience, GAIA will make your life and your code better.
 
-Read the [GAIA Documentation](https://github.io/gaia-framework) for detailed information about working with GAIA.
+Read the [GAIA Documentation](https://gaia-react.github.io/docs/) for detailed information about working with GAIA.
 
 ## Is this associated with the GAIA Flash Framework?
 
