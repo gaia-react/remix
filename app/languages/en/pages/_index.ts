@@ -11,5 +11,5 @@ export default {
     testSuite: 'Test Suite',
     title: 'Tech Stack',
   },
-  title: 'React Framework',
+  title: 'React Template',
 };

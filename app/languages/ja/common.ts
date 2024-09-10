@@ -21,7 +21,7 @@ export default {
   },
   license: 'GPL-3.0ライセンスに基づいてリリース',
   meta: {
-    siteName: 'GAIA Framework',
+    siteName: 'GAIA React',
   },
   name: '名前',
   next: '次へ',

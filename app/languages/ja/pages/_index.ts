@@ -11,5 +11,5 @@ export default {
     testSuite: 'テストスイート',
     title: 'テックスタック',
   },
-  title: 'Reactフレームワーク',
+  title: 'Reactテンプレート',
 };
