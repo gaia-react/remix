@@ -418,6 +418,8 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-await-in-loop': 'off',
         'no-restricted-syntax': 'off',
+        // Remix hydration requires waiting for network idle
+        'playwright/no-networkidle': 'off',
       },
     },
   ],

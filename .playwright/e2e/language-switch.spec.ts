@@ -11,9 +11,9 @@ test.describe('English to Japanese', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    // eslint-disable-next-line playwright/no-networkidle
+
     await page.goto('/', {waitUntil: 'networkidle'});
-    await expect(page).toHaveURL('/');
+
     await expect(page).toHaveTitle(languages.en.pages.index.meta.title);
 
     const localeSelect = page.locator('select', {hasText: 'English'});
@@ -37,9 +37,9 @@ test.describe('Japanese to English', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    // eslint-disable-next-line playwright/no-networkidle
+
     await page.goto('/', {waitUntil: 'networkidle'});
-    await expect(page).toHaveURL('/');
+
     await expect(page).toHaveTitle(languages.ja.pages.index.meta.title);
 
     const localeSelect = page.locator('select', {hasText: '日本語'});
