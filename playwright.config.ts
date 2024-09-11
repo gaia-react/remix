@@ -66,7 +66,6 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   testDir: './.playwright/e2e',
   testMatch: '**/*.spec.ts',
-  timeout: 60_000,
 
   // Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions.
   use: {
@@ -81,7 +80,6 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
     // enable stdout pipe when you need to debug server-side logs
     // stdout: 'pipe',
     url: 'http://localhost:5173',

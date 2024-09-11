@@ -1,6 +1,6 @@
 import type {FC, FormEvent} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useFetcher, useLocation, useNavigate} from '@remix-run/react';
+import {useFetcher, useLocation} from '@remix-run/react';
 import {twMerge} from 'tailwind-merge';
 
 const OPTIONS = [
@@ -20,32 +20,15 @@ const LanguageSelect: FC<LanguageSelectProps> = ({className, onChange}) => {
 
   const fetcher = useFetcher();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const handleChange = (event: FormEvent<HTMLSelectElement>) => {
     fetcher.submit(
-      {language: event.currentTarget.value},
+      {
+        language: event.currentTarget.value,
+        redirectUrl: `${location.pathname}${location.search}${location.hash}`,
+      },
       {action: '/action/set-language', method: 'POST'}
     );
-
-    const search = new URLSearchParams(location.search);
-
-    let redirectUrl = `${location.pathname}${location.search}${location.hash}`;
-
-    if (search.get('lang')) {
-      // remove forced language from the URL if present
-      search.delete('lang');
-
-      if (search.size === 0) {
-        redirectUrl = `${location.pathname}${location.hash}`;
-      } else {
-        redirectUrl = `${location.pathname}?${search.toString()}${
-          location.hash
-        }`;
-      }
-    }
-
-    navigate(redirectUrl, {replace: true});
 
     onChange?.();
   };

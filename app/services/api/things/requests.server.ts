@@ -15,13 +15,13 @@ export const getThingById = async (id: string, request: Request) => {
 };
 
 export const createThing = async (data: FormData, request: Request) => {
-  const result = api(THINGS_URL, {data, method: 'POST', request});
+  const result = await api(THINGS_URL, {data, method: 'POST', request});
 
   return thingSchema.parse(result);
 };
 
 export const updateThing = async (data: FormData, request: Request) => {
-  const result = api(`${THINGS_URL}/${data.get('id')}`, {
+  const result = await api(`${THINGS_URL}/${data.get('id')}`, {
     data,
     method: 'PUT',
     request,

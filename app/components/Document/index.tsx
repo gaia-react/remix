@@ -8,6 +8,7 @@ type DocumentProps = {
   dir?: string;
   isSsrTheme?: boolean;
   lang: string;
+  // eslint-disable-next-line react/boolean-prop-naming
   noIndex?: boolean;
   title?: string;
 };
