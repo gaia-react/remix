@@ -21,14 +21,13 @@ const LanguageSelect: FC<LanguageSelectProps> = ({className, onChange}) => {
   const fetcher = useFetcher();
   const location = useLocation();
 
-  const handleChange = (event: FormEvent<HTMLSelectElement>) => {
-    fetcher.submit(
-      {
-        language: event.currentTarget.value,
-        redirectUrl: `${location.pathname}${location.search}${location.hash}`,
-      },
-      {action: '/action/set-language', method: 'POST'}
-    );
+  const redirectUrl = `${location.pathname}${location.search}${location.hash}`;
+
+  const handleChange = (event: FormEvent<HTMLFormElement>) => {
+    fetcher.submit(event.currentTarget, {
+      action: '/action/set-language',
+      method: 'POST',
+    });
 
     onChange?.();
   };
@@ -38,12 +37,13 @@ const LanguageSelect: FC<LanguageSelectProps> = ({className, onChange}) => {
       action="/action/set-language"
       className={twMerge('relative flex-none text-sm', className)}
       method="POST"
+      onChange={handleChange}
     >
+      <input name="redirectUrl" type="hidden" value={redirectUrl} />
       <select
         className="cursor-pointer border-none !bg-transparent bg-none p-0 text-sm !ring-0"
         defaultValue={language}
         name="language"
-        onChange={handleChange}
       >
         {OPTIONS.map(({label, value}) => (
           <option key={value} value={value}>
