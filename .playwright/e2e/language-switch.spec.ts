@@ -11,7 +11,8 @@ test.describe('English to Japanese', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    await page.goto('/');
+    // eslint-disable-next-line playwright/no-networkidle
+    await page.goto('/', {waitUntil: 'networkidle'});
     await expect(page).toHaveURL('/');
     await expect(page).toHaveTitle(languages.en.pages.index.meta.title);
 
@@ -36,7 +37,8 @@ test.describe('Japanese to English', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    await page.goto('/');
+    // eslint-disable-next-line playwright/no-networkidle
+    await page.goto('/', {waitUntil: 'networkidle'});
     await expect(page).toHaveURL('/');
     await expect(page).toHaveTitle(languages.ja.pages.index.meta.title);
 

@@ -81,7 +81,7 @@ export default defineConfig({
     command: 'npm run dev',
     reuseExistingServer: !process.env.CI,
     // enable stdout pipe when you need to debug server-side logs
-    // stdout: 'pipe',
+    //stdout: 'pipe',
     url: 'http://localhost:5173',
   },
 
