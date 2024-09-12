@@ -3,7 +3,8 @@ import type {
   LoaderFunctionArgs,
   MetaFunction,
 } from '@remix-run/node';
-import {json, redirect} from '@remix-run/node';
+import {json} from '@remix-run/node';
+import {redirectWithSuccess} from 'remix-toast';
 import i18next from '~/i18next.server';
 import CreateThingPage from '~/pages/Public/Things/CreateThingPage';
 import {createThing} from '~/services/api/things/requests.server';
@@ -14,7 +15,7 @@ export const action: ActionFunction = async ({request}) => {
 
     await createThing(formData, request);
 
-    return redirect('/things', {status: 303});
+    return redirectWithSuccess('/things', 'Thing created', {status: 303});
   }
 
   return json(null, {status: 400});

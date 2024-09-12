@@ -1,11 +1,14 @@
 import type {FC} from 'react';
+import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
+import {toast as notify, ToastContainer} from 'react-toastify';
 import {config} from '@fortawesome/fontawesome-svg-core';
 import {cssBundleHref} from '@remix-run/css-bundle';
 import type {LinksFunction, LoaderFunctionArgs} from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {Outlet, useLoaderData} from '@remix-run/react';
 import {useChangeLanguage} from 'remix-i18next/react';
+import {getToast, setToastCookieOptions} from 'remix-toast';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
 import i18next from '~/i18next.server';
@@ -17,7 +20,8 @@ import {useTheme} from '~/state/theme';
 import tailwind from '~/styles/tailwind.css?url';
 import {isProductionHost} from '~/utils/http.server';
 import ErrorBoundary from './components/ErrorBoundary';
-import {envClient} from './env.server';
+import {env, envClient} from './env.server';
+import 'react-toastify/dist/ReactToastify.min.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 config.autoAddCss = false;
@@ -33,7 +37,10 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
 
   const themeSession = await getThemeSession(request);
 
-  const headers = new Headers();
+  setToastCookieOptions({secrets: [env.SESSION_SECRET]});
+
+  const {headers, toast} = await getToast(request);
+
   headers.set('Vary', 'Cookie');
 
   return json(
@@ -42,6 +49,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
       language,
       noIndex: !isProduction,
       theme: themeSession.getTheme(),
+      toast,
       user,
     },
     {headers}
@@ -50,6 +58,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
 
 export const links: LinksFunction = () => [
   {href: tailwind, rel: 'stylesheet'},
+  /*{href: toastStyles, rel: 'stylesheet'},*/
   ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
 ];
 
@@ -58,13 +67,19 @@ const App: FC = () => {
   const [theme] = useTheme();
   const {i18n} = useTranslation();
 
-  const {ENV, language, noIndex} = data;
+  const {ENV, language, noIndex, toast} = data;
 
   // This hook will change the i18n instance language to the current language
   // detected by the loader, this way, when we do something to change the
   // language, this language will change and i18next will load the correct
   // translation files
   useChangeLanguage(language);
+
+  useEffect(() => {
+    if (toast) {
+      notify(toast.message, {type: toast.type});
+    }
+  }, [toast]);
 
   return (
     <Document
@@ -74,7 +89,6 @@ const App: FC = () => {
       lang={language}
       noIndex={noIndex}
     >
-      <Outlet />
       <script
         dangerouslySetInnerHTML={{
           __html: `window.process = ${JSON.stringify({
@@ -82,6 +96,8 @@ const App: FC = () => {
           })}`,
         }}
       />
+      <Outlet />
+      <ToastContainer position="top-center" theme={theme ?? 'light'} />
     </Document>
   );
 };

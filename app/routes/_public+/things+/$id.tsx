@@ -3,8 +3,9 @@ import type {
   LoaderFunctionArgs,
   MetaFunction,
 } from '@remix-run/node';
-import {json, redirect} from '@remix-run/node';
+import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
+import {redirectWithInfo} from 'remix-toast';
 import ThingPage from '~/pages/Public/Things/ThingPage';
 import {getThingById, updateThing} from '~/services/api/things/requests.server';
 
@@ -14,7 +15,7 @@ export const action: ActionFunction = async ({request}) => {
 
     await updateThing(formData, request);
 
-    return redirect('/things', {status: 303});
+    return redirectWithInfo('/things', 'Thing updated', {status: 303});
   }
 
   return json(null, {status: 400});

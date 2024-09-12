@@ -12,6 +12,7 @@ import type {User} from '~/services/api/auth/types';
 export const sessionStorage = createCookieSessionStorage({
   cookie: {
     httpOnly: true, // for security reasons, make this cookie http only
+    maxAge: 60 * 60, // 1 hour
     name: '__session', // use any name you want here
     path: '/', // remember to add this so the cookie will work in all routes
     sameSite: 'lax', // this helps with CSRF

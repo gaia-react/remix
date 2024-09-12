@@ -5,6 +5,7 @@ import type {
 } from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
+import {jsonWithError} from 'remix-toast';
 import i18next from '~/i18next.server';
 import AllThingsPage from '~/pages/Public/Things/AllThingsPage';
 import {deleteThing, getAllThings} from '~/services/api/things/requests.server';
@@ -19,7 +20,7 @@ export const action: ActionFunction = async ({request}) => {
     if (id) {
       await deleteThing(id, request);
 
-      return json(null, {status: 200});
+      return jsonWithError({result: null}, 'Thing deleted');
     }
   }
 
