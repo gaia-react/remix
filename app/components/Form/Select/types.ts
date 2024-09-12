@@ -1,4 +1,4 @@
-import type {Option} from '~/types';
+import type {Option} from '../types';
 
 type SelectOptionWithValue = {
   options?: never;

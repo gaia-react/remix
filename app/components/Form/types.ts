@@ -15,3 +15,11 @@ export type InputProps<T = HTMLInputElement> = {
   label?: ReactNode;
   name: string;
 } & InputHTMLAttributes<T>;
+
+export type Option = {
+  disabled?: boolean;
+  label: ReactNode;
+  value: string;
+};
+
+export type RadioOption = {error?: boolean} & Option;

@@ -11,7 +11,7 @@ type WithMaxLength = {
 type WithLabel = {
   maxLength?: never;
   name: string;
-  type: 'radio' | 'select';
+  type: 'select';
 };
 
 type WithoutLabel = {

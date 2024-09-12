@@ -30,7 +30,7 @@ GAIA has many great project features built-in:
 - [RVF](https://www.rvf-js.io/) for form management and validation with working examples
 - [FontAwesome](https://fontawesome.com/) icons
 - Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
--A convenient and flexible wrapper around fetch that simplifies API calls
+  -A convenient and flexible wrapper around fetch that simplifies API calls
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
 - Light and dark mode support
@@ -53,7 +53,6 @@ GAIA React is its spiritual successor. It has been reborn as a React template. L
 Make sure you have [Node.js](https://nodejs.org/en/) >=20.17.0 LTS installed, preferably via [nvm](https://github.com/nvm-sh/nvm).
 
 All you need to do is run this installation command and get to work.
-
 
 ```sh
 npx create-remix@latest --template gaia-react/remix
