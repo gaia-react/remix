@@ -26,10 +26,7 @@ const meta: Meta = {
         return null;
       },
       path: '/things',
-      routes: [
-        {path: '/things/1', storyId: 'components-button--default'},
-        {path: '/things/2', storyId: 'form-chain--default'},
-      ],
+      routes: [{path: '/things/1', storyId: 'components-thingedit--default'}],
     }),
   ],
   parameters: {
