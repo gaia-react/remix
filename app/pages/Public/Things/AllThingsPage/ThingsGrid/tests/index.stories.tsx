@@ -10,7 +10,28 @@ import ThingsGrid from '../index';
 
 const meta: Meta = {
   component: ThingsGrid,
-  decorators: [stubs.remix()],
+  decorators: [
+    stubs.remix({
+      action: async ({request}) => {
+        const formData = await request.formData();
+
+        if (request.method === 'DELETE') {
+          if (formData.get('id') === '1') {
+            return {storyId: 'components-thingsgrid--one-thing'};
+          }
+
+          return {storyId: 'components-thingsgrid--no-things'};
+        }
+
+        return null;
+      },
+      path: '/things',
+      routes: [
+        {path: '/things/1', storyId: 'components-button--default'},
+        {path: '/things/2', storyId: 'form-chain--default'},
+      ],
+    }),
+  ],
   parameters: {
     chromatic: {viewports: [1280, 412]},
     controls: {hideNoControlsWarning: true},
@@ -65,6 +86,22 @@ export const LongStrings: StoryFn = () => {
 
   return (
     <ThingsProvider things={things}>
+      <ThingsGrid />
+    </ThingsProvider>
+  );
+};
+
+export const OneThing: StoryFn = () => {
+  const {
+    i18n: {language},
+  } = useTranslation();
+
+  const things = database[language as Language].things
+    .getAll()
+    .map(toCamelCase) as Thing[];
+
+  return (
+    <ThingsProvider things={things.slice(1)}>
       <ThingsGrid />
     </ThingsProvider>
   );
