@@ -87,17 +87,17 @@ describe('api utils', () => {
 
   test('getSafeUrl should ensure leading slash', () => {
     const url = 'test/leading/slash';
-    expect(getSafeUrl(url)).toBe('/test/leading/slash');
+    expect(getSafeUrl(url, false)).toBe('/test/leading/slash');
   });
 
   test('getSafeUrl should remove trailing slash', () => {
     const url = '/test/trailing/slash/';
-    expect(getSafeUrl(url)).toBe('/test/trailing/slash');
+    expect(getSafeUrl(url, false)).toBe('/test/trailing/slash');
   });
 
   test('getSafeUrl should remove trailing slash with query params', () => {
     const url = '/test/trailing/slash/?foo=bar';
-    expect(getSafeUrl(url)).toBe('/test/trailing/slash?foo=bar');
+    expect(getSafeUrl(url, false)).toBe('/test/trailing/slash?foo=bar');
   });
 
   test('getSafeUrl should ensure trailing slash', () => {
