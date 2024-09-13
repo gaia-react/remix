@@ -43,3 +43,10 @@ jobs:
           npm_package_version: ${{ steps.package-version.outputs.current-version}}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        name: Upload Chromatic failed output
+        with:
+          name: build-storybook-log
+          path: /home/runner/work/remix/remix/build-storybook.log
+          retention-days: 5
