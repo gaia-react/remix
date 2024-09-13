@@ -1,3 +1,4 @@
+import type {StringifyOptions} from 'query-string';
 import type {Language} from '~/languages';
 import {toHeadersObject} from '~/utils/http';
 import {compact, toCamelCase} from '~/utils/object';
@@ -18,6 +19,7 @@ export const Accept = {
 
 type ApiOptions = {
   accept?: (typeof Accept)[keyof typeof Accept];
+  arrayFormat?: StringifyOptions['arrayFormat'];
   data?: FormData | Record<string, unknown>;
   headers?: Headers | Record<string, string>;
   language?: Language;
@@ -30,6 +32,7 @@ type ApiOptions = {
 export const api = async (url: string, options?: ApiOptions) => {
   const {
     accept = Accept.JSON,
+    arrayFormat = 'comma',
     data,
     headers,
     language,
@@ -43,7 +46,7 @@ export const api = async (url: string, options?: ApiOptions) => {
   const safeUrl =
     url.startsWith('http') ? url : `${BASE_URL}${getSafeUrl(url)}`;
 
-  const safeParams = getParams(params);
+  const safeParams = getParams(params, {arrayFormat});
   const q = url.includes('?') ? '&' : '?';
   const search = safeParams ? `${q}${safeParams}` : '';
 
