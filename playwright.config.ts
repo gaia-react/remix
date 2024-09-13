@@ -79,7 +79,7 @@ export default defineConfig({
   // Run your local dev server before starting the tests
   webServer: {
     command: 'npm run dev',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
     timeout: 30_000,
     // enable stdout pipe when you need to debug server-side logs
     //stdout: 'pipe',
