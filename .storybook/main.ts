@@ -1,6 +1,5 @@
 import type {StorybookConfig} from '@storybook/react-vite';
 import {mergeConfig} from 'vite';
-import turbosnap from 'vite-plugin-turbosnap';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const config: StorybookConfig = {
@@ -34,7 +33,7 @@ const config: StorybookConfig = {
 
   stories: ['../app/**/*.stories.tsx'],
 
-  viteFinal: async (viteConfig, {configType}) =>
+  viteFinal: async (viteConfig) =>
     mergeConfig(viteConfig, {
       define: {
         'import.meta.env.API_URL': JSON.stringify(process.env.API_URL),
@@ -44,12 +43,7 @@ const config: StorybookConfig = {
         ),
         'import.meta.env.SITE_URL': JSON.stringify(process.env.SITE_URL),
       },
-      plugins: [
-        tsconfigPaths(),
-        ...(configType === 'PRODUCTION' ?
-          [turbosnap({rootDir: viteConfig.root ?? process.cwd()})]
-        : []),
-      ],
+      plugins: [tsconfigPaths()],
     }),
 };
 

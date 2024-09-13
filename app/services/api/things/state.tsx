@@ -6,7 +6,7 @@ import type {Maybe} from '~/types';
 // Based on Kent C Dodds' blog post:
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively'
 
-// This is a read-only provider. See the GAIA docs for more info.
+// This is an example of a read-only context. See the GAIA docs for more info.
 
 type ThingsContextValue = Maybe<Thing[]>;
 

@@ -24,7 +24,7 @@ const viewport = {
       right: 'sm',
       styles: {
         height: '846px',
-        width: '412px',
+        width: '390px',
       },
       type: 'mobile',
     },
@@ -32,7 +32,7 @@ const viewport = {
       name: 'Small mobile',
       right: '',
       styles: {
-        height: '667px',
+        height: '812px',
         width: '375px',
       },
       type: 'mobile',

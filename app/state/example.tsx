@@ -3,6 +3,8 @@ import {createContext, useContext, useState} from 'react';
 import type {Maybe} from '~/types';
 import {noop} from '~/utils/function';
 
+// Editable Context Example
+
 // Based on Kent C Dodds' blog post:
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
 

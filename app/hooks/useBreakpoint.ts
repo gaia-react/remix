@@ -4,7 +4,7 @@ const BREAKPOINTS = {
   '2xl': 1536,
   lg: 1024,
   md: 768,
-  sm: 400,
+  sm: 390,
   xl: 1280,
 };
 

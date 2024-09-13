@@ -45,7 +45,7 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       screens: {
-        sm: '400px',
+        sm: '390px',
       },
     },
   },
