@@ -1,6 +1,6 @@
 {
   "name": "gaia-template-remix",
-  "version": "0.9.8-beta",
+  "version": "1.0.0-beta",
   "description": "Gaia Template for Remix",
   "author": "Steven Sacks <stevensacks@gmail.com>",
   "sideEffects": false,
