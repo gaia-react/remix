@@ -7,8 +7,8 @@ import Chromatic from './decorators/chromatic';
 import Wrap from './decorators/wrap';
 import i18n from './i18next';
 import viewport from './viewport';
-import './env';
 import '~/styles/tailwind.css';
+import './env';
 
 // render dark mode in chromatic snapshots
 const isChromaticSnapshot =

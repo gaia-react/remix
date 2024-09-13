@@ -17,7 +17,8 @@ test.describe('Things CRUD', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    await page.goto('/things');
+    await page.goto('/', {waitUntil: 'networkidle'});
+
     await expect(page).toHaveURL('/things');
     await expect(page).toHaveTitle(languages.en.pages.things.meta.title);
     await expect(page.getByTitle(/Thing/)).toHaveCount(2);
