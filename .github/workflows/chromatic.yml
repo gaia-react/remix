@@ -7,22 +7,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  chromatic-deployment:
-    name: Chromatic Deployment
-    if: github.event_name == 'push' && !contains(github.event.head_commit.message, 'chore:')
+  chromatic:
+    name: Run Chromatic
+    if: !contains(github.event.head_commit.message, 'chore:')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Publish to Chromatic
+      - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
