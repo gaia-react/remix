@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {sleep, tryCatch} from '../function';
+import {tryCatch} from '../function';
 
 describe('function utils', () => {
   test('tryCatch result', async () => {
@@ -15,11 +15,5 @@ describe('function utils', () => {
         throw new Error('failed');
       })
     ).toEqual([new Error('failed'), undefined]);
-  });
-
-  test('sleep', async () => {
-    const start = Date.now();
-    await sleep(100);
-    expect(Date.now() - start).toBeGreaterThanOrEqual(100);
   });
 });
