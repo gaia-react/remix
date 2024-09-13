@@ -80,6 +80,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     reuseExistingServer: !process.env.CI,
+    timeout: 30_000,
     // enable stdout pipe when you need to debug server-side logs
     //stdout: 'pipe',
     url: 'http://localhost:5173',
