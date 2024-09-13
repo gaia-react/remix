@@ -1,16 +1,16 @@
 import type {Meta, StoryFn} from '@storybook/react';
-import SiteVersion from '../index';
+import AppVersion from '../index';
 
 const meta: Meta = {
-  component: SiteVersion,
+  component: AppVersion,
   parameters: {
     chromatic: {disableSnapshot: true},
     controls: {hideNoControlsWarning: true},
     wrap: 'p-4',
   },
-  title: 'Components/SiteVersion',
+  title: 'Components/AppVersion',
 };
 
 export default meta;
 
-export const Default: StoryFn = () => <SiteVersion />;
+export const Default: StoryFn = () => <AppVersion />;

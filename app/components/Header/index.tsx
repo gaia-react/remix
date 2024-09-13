@@ -1,10 +1,10 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Link} from '@remix-run/react';
+import AppVersion from 'app/components/AppVersion';
 import {twMerge} from 'tailwind-merge';
 import DarkModeToggle from '~/components/DarkModeToggle';
 import LanguageSelect from '~/components/LanguageSelect';
-import SiteVersion from '~/components/SiteVersion';
 
 type HeaderProps = {
   className?: string;
@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = ({className}) => {
           <Link className="text-lg font-bold" to="/">
             {t('meta.siteName', {ns: 'common'})}
           </Link>
-          <SiteVersion />
+          <AppVersion />
         </div>
         <div className="flex items-center gap-4">
           <LanguageSelect />
