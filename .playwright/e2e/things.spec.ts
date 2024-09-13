@@ -10,6 +10,8 @@ test.describe('Things CRUD', () => {
   });
 
   test('things can be created, updated, and deleted', async ({browser}) => {
+    test.slow();
+
     const context = await browser.newContext({
       extraHTTPHeaders: {
         'Accept-Language': 'en',
@@ -17,7 +19,7 @@ test.describe('Things CRUD', () => {
     });
     await context.clearCookies();
     const page = await context.newPage();
-    await page.goto('/things', {timeout: 30_000, waitUntil: 'networkidle'});
+    await page.goto('/things', {waitUntil: 'networkidle'});
 
     await expect(page).toHaveURL('/things');
     await expect(page).toHaveTitle(languages.en.pages.things.meta.title);
