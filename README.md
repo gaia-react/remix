@@ -30,7 +30,8 @@ GAIA has many great project features built-in:
 - [RVF](https://www.rvf-js.io/) for form management and validation with working examples
 - [FontAwesome](https://fontawesome.com/) icons
 - Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
-  -A convenient and flexible wrapper around fetch that simplifies API calls
+- Toast notifications with [remix-toast](https://remix.run/resources/remix-toast) and [react-toastify](https://fkhadra.github.io/react-toastify/introduction)
+- A convenient and flexible wrapper around fetch that simplifies API calls
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
 - Light and dark mode support
