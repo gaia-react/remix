@@ -35,6 +35,7 @@ jobs:
         run: npx playwright test
         env:
           API_URL: ${{ secrets.API_URL }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           MSW_ENABLED: ${{ secrets.MSW_ENABLED }}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}

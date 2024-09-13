@@ -7,7 +7,9 @@ type SiteVersionProps = {
 const SiteVersion: FC<SiteVersionProps> = ({className}) => (
   <small className={className}>
     {process.env.npm_package_version}
-    {process.env.COMMIT_SHA && <>-{process.env.COMMIT_SHA}</>}
+    {process.env.NODE_ENV !== 'production' && process.env.COMMIT_SHA && (
+      <>-{process.env.COMMIT_SHA.slice(0, 6)}</>
+    )}
   </small>
 );
 

@@ -37,7 +37,11 @@ const config: StorybookConfig = {
     mergeConfig(viteConfig, {
       define: {
         'import.meta.env.API_URL': JSON.stringify(process.env.API_URL),
+        'import.meta.env.COMMIT_SHA': JSON.stringify(process.env.COMMIT_SHA),
         'import.meta.env.MSW_ENABLED': JSON.stringify(process.env.MSW_ENABLED),
+        'import.meta.env.npm_package_version': JSON.stringify(
+          process.env.npm_package_version
+        ),
         'import.meta.env.SESSION_SECRET': JSON.stringify(
           process.env.SESSION_SECRET
         ),
