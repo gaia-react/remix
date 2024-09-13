@@ -33,6 +33,7 @@ export default defineConfig(({mode}) => {
         ],
         provider: 'v8',
       },
+      env: process.env,
       environment: 'happy-dom',
       globals: true,
       include: ['./app/**/*.test.{ts,tsx}'],
