@@ -1,0 +1,43 @@
+export default {
+  close: 'Close',
+  counters: {
+    clicks_one: '{{count}} click',
+    clicks_other: '{{count}} clicks',
+    days_one: '{{count}} day',
+    days_other: '{{count}} days',
+  },
+  date: {
+    day: 'Day',
+    month: 'month',
+    year: 'Year',
+  },
+  description: 'Description',
+  form: {
+    allFieldsAreRequired: 'All fields are required',
+    cancel: 'Cancel',
+    clear: 'Clear',
+    dateOfBirth: 'Date of birth',
+    delete: 'Delete',
+    deleteConfirm: 'Are you sure you want to delete <strong>{{name}}</strong>?',
+    ok: 'OK',
+    optional: 'Optional',
+    required: 'Required',
+    save: 'Save',
+    submit: 'Submit',
+    submitting: 'Please wait...',
+    success: 'Success',
+  },
+  license: 'Released under GPL-3.0 license',
+  meta: {
+    siteName: 'GAIA Framework',
+  },
+  name: 'Name',
+  next: 'Next',
+  previous: 'Previous',
+  theme: {
+    dark: 'Dark mode',
+    enableDarkMode: 'Enable dark mode',
+    enableLightMode: 'Enable light mode',
+    light: 'Light mode',
+  },
+};
