@@ -4,7 +4,7 @@ import type {Preview} from '@storybook/react';
 import {themes} from '@storybook/theming';
 import isChromatic from 'chromatic/isChromatic';
 import {DARK_MODE_EVENT_NAME} from 'storybook-dark-mode';
-import gaiaLogo from '~/assets/images/gaia-logo.svg';
+import brandImage from '~/assets/images/gaia-logo.svg';
 import Chromatic from './decorators/chromatic';
 import Wrap from './decorators/wrap';
 import i18n from './i18next';
@@ -15,6 +15,13 @@ import '~/styles/tailwind.css';
 import './env';
 
 config.autoAddCss = false;
+
+const BRAND = {
+  brandImage,
+  brandTarget: '_blank',
+  brandTitle: 'GAIA',
+  brandUrl: 'https://gaia-react.github.io/docs/',
+};
 
 // render dark mode in chromatic snapshots
 const isChromaticSnapshot =
@@ -48,18 +55,12 @@ const preview: Preview = {
     darkMode: {
       dark: {
         ...themes.dark,
-        brandImage: gaiaLogo,
-        brandTarget: '_blank',
-        brandTitle: 'GAIA',
-        brandUrl: 'https://gaia-react.github.io/docs/',
+        ...BRAND,
       },
       darkClass: ['dark', 'bg-grey-900', 'text-white'],
       light: {
         ...themes.light,
-        brandImage: gaiaLogo,
-        brandTarget: '_blank',
-        brandTitle: 'GAIA',
-        brandUrl: 'https://gaia-react.github.io/docs/',
+        ...BRAND,
       },
       lightClass: ['light', 'bg-white', 'text-grey-900'],
       stylePreview: true,
