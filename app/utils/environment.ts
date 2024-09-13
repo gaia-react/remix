@@ -5,12 +5,5 @@ const COMMIT_SHA =
 
 export const VERSION_WITH_SHA = `${VERSION}${COMMIT_SHA}`;
 
-const PRODUCTION_DOMAINS = ['https://production-domain.tld'];
-
-export const getApplicationVersion = () =>
-  (
-    typeof window !== 'undefined' &&
-    PRODUCTION_DOMAINS.includes(window.location.origin)
-  ) ?
-    VERSION
-  : VERSION_WITH_SHA;
+export const getApplicationVersion = (omitSHA?: boolean) =>
+  omitSHA ? VERSION : VERSION_WITH_SHA;
