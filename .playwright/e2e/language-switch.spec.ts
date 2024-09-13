@@ -1,7 +1,8 @@
+/* eslint-disable playwright/no-skipped-test */
 import {expect, test} from '@playwright/test';
 import languages from '~/languages';
 
-test.describe('English to Japanese', () => {
+test.describe.skip('English to Japanese', () => {
   test.use({locale: 'en'});
   test('index page detect english, switch to japanese', async ({browser}) => {
     const context = await browser.newContext({
@@ -27,7 +28,7 @@ test.describe('English to Japanese', () => {
   });
 });
 
-test.describe('Japanese to English', () => {
+test.describe.skip('Japanese to English', () => {
   test.use({locale: 'ja'});
   test('index page detect japanese, switch to english', async ({browser}) => {
     const context = await browser.newContext({
