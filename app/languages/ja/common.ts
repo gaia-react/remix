@@ -1,6 +1,8 @@
 export default {
   close: '閉じる',
   counters: {
+    clicks_one: '{{count}}クリック',
+    clicks_other: '{{count}}クリック',
     days_one: '{{count}}日',
     days_other: '{{count}}日',
   },

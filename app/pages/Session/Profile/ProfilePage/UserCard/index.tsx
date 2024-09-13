@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {twMerge} from 'tailwind-merge';
+import ExampleConsumer from '~/components/ExampleConsumer';
 import type {User} from '~/services/api/auth/types';
 
 type UserCardProps = {
@@ -18,7 +19,7 @@ const UserCard: FC<UserCardProps> = ({className, user}) => {
   return (
     <div
       className={twMerge(
-        'border-normal bg-secondary rounded-md border p-4',
+        'border-normal bg-secondary flex items-center justify-between rounded-md border p-4',
         className
       )}
     >
@@ -31,6 +32,7 @@ const UserCard: FC<UserCardProps> = ({className, user}) => {
           <div className="text-grey-500 dark:text-grey-400">{email}</div>
         </div>
       </div>
+      <ExampleConsumer />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 export default {
   close: 'Close',
   counters: {
+    clicks_one: '{{count}} click',
+    clicks_other: '{{count}} clicks',
     days_one: '{{count}} day',
     days_other: '{{count}} days',
   },

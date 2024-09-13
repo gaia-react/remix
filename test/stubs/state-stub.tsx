@@ -5,7 +5,7 @@ import State from '~/state';
 import type {Maybe} from '~/types';
 
 type StateDecoratorProps = {
-  example?: Maybe<string>;
+  example?: Maybe<number>;
 };
 
 const decorator =

@@ -8,7 +8,7 @@ import {UserProvider} from '~/state/user';
 import type {Maybe} from '~/types';
 
 type StateProps = {
-  example?: Maybe<string>;
+  example?: Maybe<number>;
   theme?: Theme;
   user?: Maybe<User>;
 };

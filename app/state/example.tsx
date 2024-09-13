@@ -9,8 +9,8 @@ import {noop} from '~/utils/function';
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
 
 type ExampleContextValue = [
-  Maybe<string>,
-  Dispatch<SetStateAction<Maybe<string>>>,
+  Maybe<number>,
+  Dispatch<SetStateAction<Maybe<number>>>,
 ];
 
 const ExampleContext = createContext<ExampleContextValue>([undefined, noop]);
@@ -27,7 +27,7 @@ export const useExample = () => {
 
 type ExampleProviderProps = {
   children: ReactNode;
-  initialState?: Maybe<string>;
+  initialState?: Maybe<number>;
 };
 
 export const ExampleProvider: FC<ExampleProviderProps> = ({
@@ -35,7 +35,7 @@ export const ExampleProvider: FC<ExampleProviderProps> = ({
   initialState,
 }) => {
   // eslint-disable-next-line sonarjs/hook-use-state
-  const value = useState<Maybe<string>>(initialState);
+  const value = useState<Maybe<number>>(initialState);
 
   return (
     <ExampleContext.Provider value={value}>{children}</ExampleContext.Provider>
