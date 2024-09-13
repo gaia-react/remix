@@ -23,6 +23,9 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
@@ -37,5 +40,6 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           MSW_ENABLED: ${{ secrets.MSW_ENABLED }}
+          npm_package_version: ${{ steps.package-version.outputs.current-version}}
           SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}
