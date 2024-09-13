@@ -59,7 +59,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "2.0.1",
+    "@chromatic-com/storybook": "2.0.2",
     "@faker-js/faker": "9.0.0",
     "@mswjs/data": "0.16.2",
     "@playwright-testing-library/test": "4.5.0",
@@ -97,7 +97,7 @@
     "@vitest/coverage-v8": "2.1.0",
     "accept-language-parser": "1.5.0",
     "autoprefixer": "10.4.20",
-    "chromatic": "11.9.0",
+    "chromatic": "11.10.1",
     "cross-env": "7.0.3",
     "cssnano": "7.0.6",
     "dotenv-cli": "7.4.2",
@@ -120,7 +120,7 @@
     "eslint-plugin-perfectionist": "3.5.0",
     "eslint-plugin-playwright": "1.6.2",
     "eslint-plugin-prefer-arrow": "1.2.3",
-    "eslint-plugin-react": "7.36.0",
+    "eslint-plugin-react": "7.36.1",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-sonarjs": "2.0.2",
     "eslint-plugin-storybook": "0.8.0",
