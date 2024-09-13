@@ -90,10 +90,8 @@ export const getParams = (
     return '';
   }
 
-  const {arrayFormat, useSnakeCase} = options || {
-    arrayFormat: 'comma',
-    useSnakeCase: API_USES_SNAKE_CASE,
-  };
+  const {arrayFormat = 'comma', useSnakeCase = API_USES_SNAKE_CASE} =
+    options || {};
 
   const compactedParams = compact(params, {keepFalsy: true});
   const casedParams = useSnakeCase ? toSnakeCase<any>(params) : compactedParams;

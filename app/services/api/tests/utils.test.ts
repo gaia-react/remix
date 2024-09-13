@@ -67,7 +67,7 @@ describe('api utils', () => {
       helloWorld: 'foobar',
       numberIsZero: 0,
     };
-    expect(getParams(params)).toEqual(
+    expect(getParams(params, {useSnakeCase: true})).toEqual(
       'animal=dog,cat,fish&hello_world=foobar&number_is_zero=0'
     );
   });
