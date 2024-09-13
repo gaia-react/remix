@@ -14,7 +14,7 @@ config();
 const TEST_ALL_BROWSERS = false;
 
 const otherBrowsers =
-  !process.env.CI || TEST_ALL_BROWSERS ?
+  !process.env.CI && TEST_ALL_BROWSERS ?
     [
       {
         name: 'webkit',
