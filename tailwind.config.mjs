@@ -5,9 +5,8 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import colors from 'tailwindcss/colors';
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
-const isStorybook = process.env.SB === '1';
-const isEverything = isDevelopment || isStorybook;
+const isDevelopment =
+  process.env.NODE_ENV !== 'production' || process.env.SB === '1';
 
 const customColors = Object.keys(colors).reduce(
   (acc, key) => {
@@ -28,10 +27,9 @@ const customColors = Object.keys(colors).reduce(
 /** @type {TailwindConfig} */
 export default {
   content:
-    isEverything ? ['./app/**/*.{ts,tsx}'] : ['./app/**/*!(.stories).{ts,tsx}'],
-  corePlugins: {
-    preflight: isEverything,
-  },
+    isDevelopment ?
+      ['./app/**/*.{ts,tsx}', './.storybook/**/*.{ts,tsx}']
+    : ['./app/**/*!(.stories).{ts,tsx}'],
   darkMode: 'class',
   plugins: [aspectRatioPlugin, containerQueries, forms, typography],
   theme: {

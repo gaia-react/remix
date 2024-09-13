@@ -1,3 +1,4 @@
+import {config} from '@fortawesome/fontawesome-svg-core';
 import {addons} from '@storybook/preview-api';
 import type {Preview} from '@storybook/react';
 import {themes} from '@storybook/theming';
@@ -7,8 +8,12 @@ import Chromatic from './decorators/chromatic';
 import Wrap from './decorators/wrap';
 import i18n from './i18next';
 import viewport from './viewport';
+import 'react-toastify/dist/ReactToastify.min.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import '~/styles/tailwind.css';
 import './env';
+
+config.autoAddCss = false;
 
 // render dark mode in chromatic snapshots
 const isChromaticSnapshot =
