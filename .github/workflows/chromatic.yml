@@ -35,7 +35,6 @@ jobs:
           exitZeroOnChanges: true
           exitOnceUploaded: true
           autoAcceptChanges: 'main'
-          externals: 'app/styles/tailwind.css'
         env:
           SB: 1
           API_URL: ${{ secrets.API_URL }}
