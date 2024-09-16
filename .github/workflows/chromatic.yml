@@ -32,7 +32,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           debug: true
-          onlyChanged: true
           exitZeroOnChanges: true
           exitOnceUploaded: true
           autoAcceptChanges: 'main'

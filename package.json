@@ -21,7 +21,7 @@
     "test:lint-staged": "vitest --run --changed --passWithNoTests --bail 1",
     "pw": "npx playwright test",
     "pw-ui": "npx playwright test --ui",
-    "chromatic": "cross-env SB=1 npx chromatic --only-changed --exit-once-uploaded --exit-zero-on-changes --skip '@(renovate/**|dependabot/**)'",
+    "chromatic": "cross-env SB=1 npx chromatic --exit-once-uploaded --exit-zero-on-changes --skip '@(renovate/**|dependabot/**)'",
     "storybook": "cross-env SB=1 storybook dev -p 6006",
     "build-storybook": "cross-env SB=1 storybook build --test"
   },
@@ -153,7 +153,6 @@
     "tailwindcss": "3.4.11",
     "typescript": "5.6.2",
     "vite": "5.4.5",
-    "vite-plugin-turbosnap": "1.0.3",
     "vite-tsconfig-paths": "5.0.1",
     "vitest": "2.1.0"
   },
