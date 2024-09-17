@@ -1,8 +1,11 @@
-/* eslint-disable unicorn/prefer-module,no-console */
-const fs = require('node:fs');
+/* eslint-disable no-console */
+import {rename} from 'node:fs';
+import path from 'node:path';
 
 const initializeEnvironment = () => {
-  fs.rename('.env.example', '.env', (error) => {
+  const originalFile = path.resolve('./.env.example');
+  const renamedFile = path.resolve('./.env');
+  rename(originalFile, renamedFile, (error) => {
     if (error) {
       console.error('ERROR:', error);
     }
@@ -13,4 +16,4 @@ const main = () => {
   initializeEnvironment();
 };
 
-module.exports = main;
+export default main;
