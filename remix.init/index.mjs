@@ -1,6 +1,6 @@
 /* eslint-disable no-console,sonarjs/no-os-command-from-path */
 import {execSync} from 'node:child_process';
-import {rename} from 'node:fs';
+import {rename, unlinkSync} from 'node:fs';
 import path from 'node:path';
 
 const renameEnvironmentFile = (rootDirectory) => {
@@ -20,9 +20,15 @@ const initializeHuskyAndPlaywright = (rootDirectory) => {
   });
 };
 
-const main = ({rootDirectory}) => {
+const cleanup = (rootDirectory) => {
+  unlinkSync(path.join(rootDirectory, '.github/CODEOWNERS'));
+  unlinkSync(path.join(rootDirectory, '.github/FUNDING.yml'));
+};
+
+const main = async ({rootDirectory}) => {
   renameEnvironmentFile(rootDirectory);
   initializeHuskyAndPlaywright(rootDirectory);
+  cleanup(rootDirectory);
 };
 
 export default main;
