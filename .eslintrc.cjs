@@ -175,6 +175,7 @@ const shared = {
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
     'sonarjs/cognitive-complexity': 'off',
+    'sonarjs/fixme-tag': 'off',
     'sonarjs/no-nested-conditional': 'off',
     'sonarjs/no-commented-code': 'off',
     'sonarjs/no-misused-promises': ['error', {checksVoidReturn: false}],
