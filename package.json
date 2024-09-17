@@ -161,6 +161,5 @@
   },
   "engines": {
     "node": ">=20.17.0"
-  },
-  "packageManager": "pnpm@8.1.0+sha1.09ebf306075e96037432071992bb00340c263d85"
+  }
 }
