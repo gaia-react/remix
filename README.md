@@ -69,7 +69,7 @@ npm install
 
 ## Development
 
-Duplicate the `.env.example` file and name it `.env`
+Here's how to develop with GAIA.
 
 ### Storybook
 
