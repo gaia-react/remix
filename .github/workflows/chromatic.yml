@@ -34,6 +34,7 @@ jobs:
           onlyChanged: true
           exitZeroOnChanges: true
           exitOnceUploaded: true
+          autoAcceptChanges: 'main'
           externals: 'app/styles/tailwind.css'
         env:
           SB: 1
