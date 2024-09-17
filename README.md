@@ -59,17 +59,19 @@ All you need to do is run this installation command and get to work.
 npx create-remix@latest --template gaia-react/remix
 ```
 
-You can choose to install packages when prompted, or do it manually.
+When prompted, to install packages and run the remix.init, select "Yes".
 
-### Install packages
+If you choose "No", you will need to run these two commands manually after the installation:
 
 ```sh
 npm install
+
+npx remix init
 ```
 
 ## Development
 
-Duplicate the `.env.example` file and name it `.env`
+Here's how to develop with GAIA.
 
 ### Storybook
 

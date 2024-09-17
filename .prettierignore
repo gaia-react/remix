@@ -5,5 +5,5 @@ package-lock.json
 .prettierignore
 
 /public/build
-.env
+.env.example
 

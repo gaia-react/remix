@@ -6,6 +6,11 @@ export default {
     days_one: '{{count}}日',
     days_other: '{{count}}日',
   },
+  date: {
+    day: '日',
+    month: '月',
+    year: '年',
+  },
   description: '説明',
   form: {
     allFieldsAreRequired: '全項目必須',
