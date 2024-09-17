@@ -5,6 +5,7 @@ import type {
 } from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {AuthorizationError} from 'remix-auth';
+import {jsonWithError} from 'remix-toast';
 import i18next from '~/i18next.server';
 import LoginPage from '~/pages/Auth/LoginPage';
 import {authenticator, requireNotAuthenticated} from '~/sessions.server/auth';
@@ -19,13 +20,17 @@ export const action: ActionFunction = async ({request}) => {
 
   if (error) {
     if (error instanceof Response) {
-      return error;
+      return jsonWithError({result: null}, error.message);
     }
 
     if (error instanceof AuthorizationError) {
       return {error: 'invalidCredentials'};
     }
+
+    return jsonWithError({result: null}, error.message);
   }
+
+  return null;
 };
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
