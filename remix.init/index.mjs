@@ -1,10 +1,15 @@
-import {copyFileSync} from 'node:fs';
+/* eslint-disable no-console */
+import {rename} from 'node:fs';
 import path from 'node:path';
 
 const initializeEnvironment = () => {
   const originalFile = path.resolve('.env.example');
   const renamedFile = path.resolve('.env');
-  copyFileSync(originalFile, renamedFile);
+  rename(originalFile, renamedFile, (error) => {
+    if (error) {
+      console.error('ERROR:', error);
+    }
+  });
 };
 
 const main = () => {
