@@ -21,7 +21,7 @@
     "test:lint-staged": "vitest --run --changed --passWithNoTests --bail 1",
     "pw": "npx playwright test",
     "pw-ui": "npx playwright test --ui",
-    "chromatic": "cross-env SB=1 npx chromatic --auto-accept-changes 'main' --exit-once-uploaded --exit-zero-on-changes --skip '@(renovate/**|dependabot/**)'",
+    "chromatic": "cross-env SB=1 npx chromatic --auto-accept-changes 'main' --storybook-build-dir 'storybook-static' --exit-once-uploaded --exit-zero-on-changes --skip '@(renovate/**|dependabot/**)'",
     "storybook": "cross-env SB=1 storybook dev -p 6006",
     "build-storybook": "cross-env SB=1 storybook build --test"
   },
