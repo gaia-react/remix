@@ -20,7 +20,8 @@ export const action: ActionFunction = async ({request}) => {
 
   if (error) {
     if (error instanceof Response) {
-      return jsonWithError({result: null}, error.message);
+      // authenticator throws a 302 Response on success
+      throw error;
     }
 
     if (error instanceof AuthorizationError) {

@@ -58,7 +58,6 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
 
 export const links: LinksFunction = () => [
   {href: tailwind, rel: 'stylesheet'},
-  /*{href: toastStyles, rel: 'stylesheet'},*/
   ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
 ];
 
