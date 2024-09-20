@@ -15,7 +15,7 @@ const Footer: FC<FooterProps> = ({className}) => {
         <small>&copy;2024 GAIA Framework</small>
         <small>
           <a
-            href="https://github.com/gaia-react/remix-stack?tab=GPL-3.0-1-ov-file"
+            href="https://github.com/gaia-react/remix?tab=MIT-1-ov-file#readme"
             rel="noreferrer"
             target="_blank"
           >
