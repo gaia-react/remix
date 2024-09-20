@@ -26,7 +26,7 @@ export default {
     submitting: '少々お待ちください...',
     success: '成功',
   },
-  license: 'GPL-3.0ライセンスに基づいてリリース',
+  license: 'MITライセンスに基づいてリリース',
   meta: {
     siteName: 'GAIA React',
   },

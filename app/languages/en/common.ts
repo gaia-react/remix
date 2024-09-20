@@ -27,7 +27,7 @@ export default {
     submitting: 'Please wait...',
     success: 'Success',
   },
-  license: 'Released under GPL-3.0 license',
+  license: 'Released under MIT license',
   meta: {
     siteName: 'GAIA Framework',
   },
