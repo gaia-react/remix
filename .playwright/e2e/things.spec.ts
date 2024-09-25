@@ -9,14 +9,11 @@ test.describe('Things CRUD', () => {
     resetTestData();
   });
 
-  test('things can be created, updated, and deleted', async ({browser}) => {
-    const context = await browser.newContext({
-      extraHTTPHeaders: {
-        'Accept-Language': 'en',
-      },
+  test('things can be created, updated, and deleted', async ({page}) => {
+    await page.setExtraHTTPHeaders({
+      'Accept-Language': 'en',
     });
-    await context.clearCookies();
-    const page = await context.newPage();
+    await page.context().clearCookies();
     // wait for Remix to hydrate JavaScript
     await page.goto('/things', {waitUntil: 'networkidle'});
 
@@ -47,7 +44,5 @@ test.describe('Things CRUD', () => {
     // Delete the created thing
     await page.getByRole('button', {name: 'Delete'}).last().click();
     await expect(page.getByTitle(/Thing/)).toHaveCount(2);
-
-    await context.close();
   });
 });
