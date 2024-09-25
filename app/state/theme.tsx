@@ -169,7 +169,7 @@ const clientThemeCode = `
   .trim();
 
 type ThemeHeadProps = {
-  isSsrTheme: boolean;
+  isSsrTheme?: boolean;
 };
 
 export const ThemeHead: FC<ThemeHeadProps> = ({isSsrTheme}) => {

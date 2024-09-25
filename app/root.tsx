@@ -84,7 +84,7 @@ const App: FC = () => {
     <Document
       className={twJoin(theme)}
       dir={i18n.dir()}
-      isSsrTheme={Boolean(data.theme)}
+      isSsrTheme={!!data.theme}
       lang={language}
       noIndex={noIndex}
     >

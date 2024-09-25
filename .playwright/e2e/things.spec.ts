@@ -1,6 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {resetTestData} from 'test/mocks/database';
 import languages from '~/languages';
+import {hydration} from '../utils';
 
 test.describe('Things CRUD', () => {
   test.use({locale: 'en'});
@@ -14,8 +15,9 @@ test.describe('Things CRUD', () => {
       'Accept-Language': 'en',
     });
     await page.context().clearCookies();
-    // wait for Remix to hydrate JavaScript
-    await page.goto('/things', {waitUntil: 'networkidle'});
+
+    await page.goto('/things');
+    await hydration(page);
 
     await expect(page).toHaveURL('/things');
     await expect(page).toHaveTitle(languages.en.pages.things.meta.title);

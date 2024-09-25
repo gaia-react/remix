@@ -1,6 +1,7 @@
 import type {FC, ReactNode} from 'react';
 import {Links, Meta, Scripts, ScrollRestoration} from '@remix-run/react';
 import {ThemeHead} from '~/state/theme';
+import MetaHydrated from './MetaHydrated';
 
 type DocumentProps = {
   children: ReactNode;
@@ -17,7 +18,7 @@ const Document: FC<DocumentProps> = ({
   children,
   className,
   dir,
-  isSsrTheme = false,
+  isSsrTheme,
   lang,
   noIndex,
   title,
@@ -26,6 +27,7 @@ const Document: FC<DocumentProps> = ({
     <head>
       <meta charSet="utf-8" />
       <meta content="width=device-width,initial-scale=1" name="viewport" />
+      <MetaHydrated />
       <Meta />
       <Links />
       <link href="https://fonts.googleapis.com" rel="preconnect" />
