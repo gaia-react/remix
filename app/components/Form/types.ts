@@ -1,20 +1,24 @@
 import type {InputHTMLAttributes, ReactNode} from 'react';
 import type {IconProp} from '@fortawesome/fontawesome-svg-core';
 
-export type InputProps<T = HTMLInputElement> = {
+export type SharedInputProps = {
   classNameDescription?: string;
-  classNameIcon?: string;
-  classNameInput?: string;
   classNameLabel?: string;
   description?: ReactNode;
   error?: ReactNode;
   extra?: ReactNode;
   hideMaxLength?: boolean;
-  icon?: IconProp;
-  iconPosition?: 'left' | 'right';
   label?: ReactNode;
   name: string;
-} & InputHTMLAttributes<T>;
+};
+
+export type InputProps = {
+  classNameIcon?: string;
+  classNameInput?: string;
+  icon?: IconProp;
+  iconPosition?: 'left' | 'right';
+} & InputHTMLAttributes<HTMLInputElement> &
+  SharedInputProps;
 
 export type Option = {
   disabled?: boolean;
