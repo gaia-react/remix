@@ -20,7 +20,7 @@ import i18n from './i18n';
 import i18next from './i18next.server';
 import 'dotenv/config';
 
-if (env.NODE_ENV === 'development' && env.MSW_ENABLED) {
+if (env.NODE_ENV !== 'production' && env.MSW_ENABLED) {
   startApiMocks();
 }
 

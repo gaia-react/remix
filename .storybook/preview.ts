@@ -1,11 +1,7 @@
 import {config} from '@fortawesome/fontawesome-svg-core';
-import {addons} from '@storybook/preview-api';
 import type {Preview} from '@storybook/react';
 import {themes} from '@storybook/theming';
-import isChromatic from 'chromatic/isChromatic';
-import {DARK_MODE_EVENT_NAME} from 'storybook-dark-mode';
-import Chromatic from './decorators/chromatic';
-import Wrap from './decorators/wrap';
+import {decorators} from './chromatic';
 import i18n from './i18next';
 import brandImage from './static/gaia-logo.png';
 import viewport from './viewport';
@@ -23,18 +19,8 @@ const BRAND = {
   brandUrl: 'https://gaia-react.github.io/docs/',
 };
 
-// render dark mode in chromatic snapshots
-const isChromaticSnapshot =
-  isChromatic() ||
-  (process.env.NODE_ENV === 'production' ?
-    [...(window?.location.ancestorOrigins || {length: 0})].some((origin) =>
-      origin.includes('www.chromatic.com')
-    )
-    // @ts-ignore
-  : false);
-
 const preview: Preview = {
-  decorators: isChromaticSnapshot ? [Wrap, Chromatic] : [Wrap],
+  decorators,
   initialGlobals: {
     locale: 'en',
     locales: {
@@ -70,24 +56,5 @@ const preview: Preview = {
     viewport,
   },
 };
-
-if (!isChromaticSnapshot) {
-  // listen for dark mode toggle changes
-  const channel = addons.getChannel();
-  channel.on(DARK_MODE_EVENT_NAME, (isDark: boolean) => {
-    // eslint-disable-next-line unicorn/prevent-abbreviations
-    const docsStory = document.querySelector('.docs-story');
-
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      docsStory?.classList.add('bg-grey-900');
-      docsStory?.classList.add('text-white');
-    } else {
-      document.documentElement.classList.remove('dark');
-      docsStory?.classList.remove('bg-grey-900');
-      docsStory?.classList.remove('text-white');
-    }
-  });
-}
 
 export default preview;

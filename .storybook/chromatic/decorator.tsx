@@ -1,7 +1,10 @@
 import type {ReactRenderer} from '@storybook/react';
 import type {DecoratorFunction} from '@storybook/types';
 
-const Chromatic: DecoratorFunction<ReactRenderer> = (storyFn, {parameters}) => {
+const ChromaticDecorator: DecoratorFunction<ReactRenderer> = (
+  storyFn,
+  {parameters}
+) => {
   // sessionStorage carries over between snapshots so in order to
   // have consistent story snapshots, is necessary to clear the sessionStorage
   // before each snapshot is taken
@@ -29,4 +32,4 @@ const Chromatic: DecoratorFunction<ReactRenderer> = (storyFn, {parameters}) => {
   );
 };
 
-export default Chromatic;
+export default ChromaticDecorator;

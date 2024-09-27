@@ -16,25 +16,25 @@ The Developer Experience (DX) is designed to be top-notch.
 - Unit, integration, visual regression, and end-to-end tests are set up.
 - While GAIA comes with recommended packages, conventions, and settings, you're free to change or remove them to suit your needs!
 
-GAIA has many great project features built-in:
+GAIA React has many great features built-in:
 
 - Built with [Remix](https://remix.run/), the best full-stack React framework for the modern web
-- Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
 - [TailwindCSS](https://tailwindcss.com/) for styling, along with CSS Module support
-- [Zod](https://zod.dev/) for data validation and types
-- Robust [ESLint](https://eslint.org/) ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
-- [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks
-- A complete test suite with [Vitest](https://vitest.dev), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [PlayWright](https://playwright.dev/docs/intro)
+- [Zod](https://zod.dev/) for data validation
+- Robust ESLint ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
+- [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks to ensure code quality
+- A complete testing suite with [Vitest](https://vitest.dev), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [PlayWright](https://playwright.dev/docs/intro)
 - [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a [Remix Stub](https://remix.run/docs/en/main/utils/create-remix-stub) decorator included
 - [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking
-- [RVF](https://www.rvf-js.io/) for form management and validation with working examples
-- [FontAwesome](https://fontawesome.com/) icons
-- Working authentication example with [remix-auth](https://remix.run/resources/remix-auth)
+- [remix-auth](https://remix.run/resources/remix-auth) with a working authentication example
 - Toast notifications with [remix-toast](https://remix.run/resources/remix-toast) and [react-toastify](https://fkhadra.github.io/react-toastify/introduction)
+- Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
+- [RVF](https://www.rvf-js.io/) for form management and validation
+- [FontAwesome](https://fontawesome.com/) icons
 - A convenient and flexible wrapper around fetch that simplifies API calls
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
-- Light and dark mode support
+- Dark mode support
 - And much more!
 
 No matter what your skill level or experience, GAIA will make your life and your code better.
@@ -47,7 +47,7 @@ Read the [GAIA Documentation](https://gaia-react.github.io/docs/) for detailed i
 
 The GAIA Flash Framework revolutionized Flash website development and became the most popular Flash framework in the world (second only to Adobe Flex, which was focused on enterprise applications). It was used to build over 100,000 Flash sites and relied upon by every major digital agency worldwide.
 
-GAIA React is its spiritual successor. It has been reborn as a React template. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React template available.
+GAIA React is its spiritual successor. It has been reborn as a React template. Like its predecessor, it's designed to be the most comprehensive and easy-to-use React template available, to build professional-grade frontend applications.
 
 ## Installation
 
