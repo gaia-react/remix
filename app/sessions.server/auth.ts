@@ -38,7 +38,7 @@ authenticator.use(
     formData.set('email', form.get('email') as string);
     formData.set('password', hashedPassword);
 
-    return login(formData, request);
+    return login(request, formData);
   }),
   'email-password'
 );

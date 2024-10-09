@@ -1,10 +1,10 @@
 import {delay, http} from 'msw';
 import database from 'test/mocks/database';
 import {DELAY, getLanguage} from 'test/utils';
-import {THINGS_URL} from '~/services/api/urls';
+import {THINGS_URI} from '~/services/api/uris';
 
 export default http.delete(
-  `${process.env.API_URL}${THINGS_URL}/:id`,
+  `${process.env.API_URL}${THINGS_URI}/:id`,
   async ({params, request}) => {
     if (!params.id) {
       return new Response(

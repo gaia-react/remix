@@ -2,11 +2,11 @@ import {http} from 'msw';
 import SparkMD5 from 'spark-md5';
 import database from 'test/mocks/database';
 import {getLanguage} from 'test/utils';
-import {LOGIN_URL} from '~/services/api/urls';
+import {LOGIN_URI} from '~/services/api/uris';
 import {tryCatch} from '~/utils/function';
 
 export default http.post(
-  `${process.env.API_URL}${LOGIN_URL}`,
+  `${process.env.API_URL}${LOGIN_URI}`,
   async ({request}) => {
     const [error, login] = await tryCatch(async () => {
       const data = await request.formData();

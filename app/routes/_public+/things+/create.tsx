@@ -13,7 +13,7 @@ export const action: ActionFunction = async ({request}) => {
   if (request.method === 'POST') {
     const formData = await request.formData();
 
-    await createThing(formData, request);
+    await createThing(request, formData);
 
     return redirectWithSuccess('/things', 'Thing created', {status: 303});
   }

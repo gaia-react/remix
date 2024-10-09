@@ -1,10 +1,10 @@
 import {http} from 'msw';
 import database from 'test/mocks/database';
 import {getLanguage} from 'test/utils';
-import {THINGS_URL} from '~/services/api/urls';
+import {THINGS_URI} from '~/services/api/uris';
 
 const one = http.get(
-  `${process.env.API_URL}${THINGS_URL}/:id`,
+  `${process.env.API_URL}${THINGS_URI}/:id`,
   ({params, request}) => {
     if (!params.id) {
       return new Response(
@@ -37,7 +37,7 @@ const one = http.get(
 );
 
 const all = http.get(
-  `${process.env.API_URL}${THINGS_URL}`,
+  `${process.env.API_URL}${THINGS_URI}`,
   ({request}) =>
     new Response(
       JSON.stringify({

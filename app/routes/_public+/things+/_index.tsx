@@ -18,7 +18,7 @@ export const action: ActionFunction = async ({request}) => {
     const id = result.get('id') as string;
 
     if (id) {
-      await deleteThing(id, request);
+      await deleteThing(request, id);
 
       return jsonWithError({result: null}, 'Thing deleted');
     }

@@ -13,7 +13,7 @@ export const action: ActionFunction = async ({request}) => {
   if (request.method === 'PUT') {
     const formData = await request.formData();
 
-    await updateThing(formData, request);
+    await updateThing(request, formData);
 
     return redirectWithInfo('/things', 'Thing updated', {status: 303});
   }
@@ -22,7 +22,7 @@ export const action: ActionFunction = async ({request}) => {
 };
 
 export const loader = async ({params, request}: LoaderFunctionArgs) => {
-  const thing = await getThingById(params.id!, request);
+  const thing = await getThingById(request, params.id!);
 
   return json({thing});
 };

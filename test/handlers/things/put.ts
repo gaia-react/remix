@@ -1,11 +1,11 @@
 import {delay, http} from 'msw';
 import database from 'test/mocks/database';
 import {date, DELAY, getLanguage} from 'test/utils';
-import {THINGS_URL} from '~/services/api/urls';
+import {THINGS_URI} from '~/services/api/uris';
 import {tryCatch} from '~/utils/function';
 
 export default http.put(
-  `${process.env.API_URL}${THINGS_URL}/:id`,
+  `${process.env.API_URL}${THINGS_URI}/:id`,
   async ({params, request}) => {
     const [error, thing] = await tryCatch(async () => {
       const data = await request.formData();

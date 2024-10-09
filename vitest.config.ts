@@ -25,7 +25,7 @@ export default defineConfig(({mode}) => {
           '**/.eslintrc.cjs',
           'app/{languages,routes,sessions.server,state,types,validators}/**/*',
           'app/{entry.client,entry.server,env.server,i18n,i18next.server,root}.*',
-          'app/services/api/{index,urls}.ts',
+          'app/services/api/{index,uris}.ts',
           'app/services/api/**/{parsers,requests,requests.server,state,types}.*',
           'app/utils/http.server.ts',
           'app/**/{state,tests}/*',
