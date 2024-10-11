@@ -7,13 +7,13 @@ import {json} from '@remix-run/node';
 import {redirectWithSuccess} from 'remix-toast';
 import i18next from '~/i18next.server';
 import CreateThingPage from '~/pages/Public/Things/CreateThingPage';
-import {createThing} from '~/services/api/things/requests.server';
+import {createThing} from '~/services/gaia/things/requests.server';
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === 'POST') {
     const formData = await request.formData();
 
-    await createThing(request, formData);
+    await createThing(formData);
 
     return redirectWithSuccess('/things', 'Thing created', {status: 303});
   }

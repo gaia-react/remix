@@ -17,18 +17,11 @@ const schema = {
   id: primaryKey(String),
 };
 
-const en: ServerUser = {
+const data: ServerUser = {
   email: 'user@domain.com',
   family_name: 'Smith',
   given_name: 'John',
   id: '1',
 };
 
-const ja: ServerUser = {
-  email: 'user@domain.jp',
-  family_name: '山田',
-  given_name: '太郎',
-  id: '1',
-};
-
-export default {en, ja, schema};
+export default {data, schema};

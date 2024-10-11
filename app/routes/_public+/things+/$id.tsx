@@ -7,13 +7,16 @@ import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import {redirectWithInfo} from 'remix-toast';
 import ThingPage from '~/pages/Public/Things/ThingPage';
-import {getThingById, updateThing} from '~/services/api/things/requests.server';
+import {
+  getThingById,
+  updateThing,
+} from '~/services/gaia/things/requests.server';
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === 'PUT') {
     const formData = await request.formData();
 
-    await updateThing(request, formData);
+    await updateThing(formData);
 
     return redirectWithInfo('/things', 'Thing updated', {status: 303});
   }
@@ -21,8 +24,8 @@ export const action: ActionFunction = async ({request}) => {
   return json(null, {status: 400});
 };
 
-export const loader = async ({params, request}: LoaderFunctionArgs) => {
-  const thing = await getThingById(request, params.id!);
+export const loader = async ({params}: LoaderFunctionArgs) => {
+  const thing = await getThingById(params.id!);
 
   return json({thing});
 };

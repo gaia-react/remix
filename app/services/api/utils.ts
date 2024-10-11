@@ -1,39 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {snakeCase} from 'lodash';
-import queryString from 'query-string';
+import type {Options} from 'ky';
 import type {StringifyOptions} from 'query-string';
-import type {Language} from '~/languages';
-import {getLanguageSession} from '~/sessions.server/language';
-import type {Maybe} from '~/types';
-import {compact, toSnakeCase} from '~/utils/object';
+import queryString from 'query-string';
+import {tryCatch} from '~/utils/function';
+import {toCamelCase, toSnakeCase} from '~/utils/object';
 
-export const API_USES_SNAKE_CASE = true;
-
-export const API_EXPECTS_TRAILING_SLASH = false;
-
-export const getAcceptLanguage = async ({
-  language,
-  request,
-}: {
-  language?: Language;
-  request?: Request;
-}): Promise<string> => {
-  if (request) {
-    const languageSession = await getLanguageSession(request);
-
-    return (
-      languageSession.get() ||
-      request.headers.get('Accept-Language') ||
-      language ||
-      'en'
-    );
-  }
-
-  return language ?? 'en';
-};
-
-/* istanbul ignore next */
-const getBaseUrl = () => {
+export const getBaseUrl = () => {
   if (process.env.API_URL) {
     // server api call
     return process.env.API_URL;
@@ -48,81 +19,85 @@ const getBaseUrl = () => {
   return '';
 };
 
-export const BASE_URL = getBaseUrl();
-
-//  Compact body with proper case for the request
-export const getBody = (
-  data?: FormData | Record<string, unknown>,
-  useSnakeCase = API_USES_SNAKE_CASE
-  // eslint-disable-next-line sonarjs/function-return-type
+export const requestToSnakeCase = async (
+  request: Request,
+  options: Options
 ) => {
-  if (!data) {
-    return undefined;
+  if (options.body && !(options.body instanceof FormData)) {
+    const body = JSON.stringify(
+      toSnakeCase(JSON.parse(options.body as string))
+    );
+
+    // eslint-disable-next-line unicorn/no-invalid-fetch-options
+    return new Request(request, {body});
   }
-
-  if (data instanceof FormData) {
-    if (!useSnakeCase) {
-      return data;
-    }
-    const casedFormData = new FormData();
-
-    [...data.keys()].forEach((key) => {
-      casedFormData.set(snakeCase(key), data.get(key)!);
-    });
-
-    return casedFormData;
-  }
-
-  const compacted = compact(data, {keepFalsy: true});
-
-  return JSON.stringify(useSnakeCase ? toSnakeCase(compacted) : compacted);
 };
 
-//  Compact params with proper case for the request
-export const getParams = (
-  params: Maybe<Record<string, unknown>>,
+export const responseToCamelCase = async (
+  _request: Request,
+  _options: Options,
+  response: Response
+) => {
+  const [, result] = await tryCatch(async () => {
+    const original = await response.json();
+
+    return new Response(JSON.stringify(toCamelCase(original)), response);
+  });
+
+  if (result) {
+    return result;
+  }
+};
+
+export const appendSearchParams = (
+  uri: string,
   options?: {
     arrayFormat?: StringifyOptions['arrayFormat'];
+    searchParams?: Record<string, unknown>;
     useSnakeCase?: boolean;
   }
 ) => {
-  if (!params) {
-    return '';
+  const {
+    arrayFormat = 'comma',
+    searchParams,
+    useSnakeCase = true,
+  } = options || {};
+
+  if (!searchParams) {
+    return uri;
   }
 
-  const {arrayFormat = 'comma', useSnakeCase = API_USES_SNAKE_CASE} =
-    options || {};
+  const casedParams =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSnakeCase ? toSnakeCase<any>(searchParams) : searchParams;
 
-  const compactedParams = compact(params, {keepFalsy: true});
-  const casedParams = useSnakeCase ? toSnakeCase<any>(params) : compactedParams;
+  const safeParams = queryString.stringify(casedParams, {arrayFormat});
+  const q = uri.includes('?') ? '&' : '?';
+  const search = safeParams ? `${q}${safeParams}` : '';
 
-  return queryString.stringify(casedParams, {arrayFormat});
+  return `${uri}${search}`;
 };
 
-// Ensures leading and trailing slash as needed
-export const getSafeUrl = (
+export const setPathParams = (
   url: string,
-  expectTrailingSlash = API_EXPECTS_TRAILING_SLASH
-) => {
-  const leadingSlash = url.startsWith('/') ? url : `/${url}`;
+  pathParams?: Record<string, unknown>
+) =>
+  pathParams ?
+    Object.entries(pathParams).reduce(
+      (acc, [key, value]) => acc.replace(`:${key}`, value as string),
+      url
+    )
+  : url;
 
-  if (url.includes('?')) {
-    const [before, after] = leadingSlash.split('?');
-
-    if (expectTrailingSlash) {
-      const trailingSlash = before.endsWith('/') ? before : `${before}/`;
-
-      return `${trailingSlash}?${after}`;
-    }
-
-    const noTrailingSlash = before.endsWith('/') ? before.slice(0, -1) : before;
-
-    return `${noTrailingSlash}?${after}`;
-  }
-
-  if (expectTrailingSlash) {
-    return url.endsWith('/') ? leadingSlash : `${leadingSlash}/`;
-  }
-
-  return url.endsWith('/') ? leadingSlash.slice(0, -1) : leadingSlash;
-};
+export const getUri = (
+  uri: string,
+  {
+    pathParams,
+    ...options
+  }: {
+    arrayFormat?: StringifyOptions['arrayFormat'];
+    pathParams?: Record<string, unknown>;
+    searchParams?: Record<string, unknown>;
+    useSnakeCase?: boolean;
+  } = {}
+) => appendSearchParams(setPathParams(uri, pathParams), options);

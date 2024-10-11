@@ -1,12 +1,12 @@
 import {delay, http} from 'msw';
 import {nanoid} from 'nanoid';
 import database from 'test/mocks/database';
-import {date, DELAY, getLanguage} from 'test/utils';
-import {THINGS_URI} from '~/services/api/uris';
+import {date, DELAY} from 'test/utils';
+import {GAIA_ENDPOINTS} from '~/services/gaia/endpoints';
 import {tryCatch} from '~/utils/function';
 
 export default http.post(
-  `${process.env.API_URL}${THINGS_URI}`,
+  `${process.env.API_URL}${GAIA_ENDPOINTS.things}`,
   async ({request}) => {
     const [error, thing] = await tryCatch(async () => {
       const data = await request.formData();
@@ -18,7 +18,7 @@ export default http.post(
       return new Response(JSON.stringify({error}), {status: 400});
     }
 
-    const data = database[getLanguage(request)].things.create({
+    const data = database.things.create({
       ...thing,
       created_at: date({minutes: 15}).toISOString(),
       id: nanoid(),

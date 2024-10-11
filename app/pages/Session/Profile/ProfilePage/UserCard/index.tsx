@@ -4,7 +4,7 @@ import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {twMerge} from 'tailwind-merge';
 import ExampleConsumer from '~/components/ExampleConsumer';
-import type {User} from '~/services/api/auth/types';
+import type {User} from '~/services/gaia/auth/types';
 
 type UserCardProps = {
   className?: string;

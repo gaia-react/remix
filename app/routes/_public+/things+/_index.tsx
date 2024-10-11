@@ -8,8 +8,11 @@ import {useLoaderData} from '@remix-run/react';
 import {jsonWithError} from 'remix-toast';
 import i18next from '~/i18next.server';
 import AllThingsPage from '~/pages/Public/Things/AllThingsPage';
-import {deleteThing, getAllThings} from '~/services/api/things/requests.server';
-import {ThingsProvider} from '~/services/api/things/state';
+import {
+  deleteThing,
+  getAllThings,
+} from '~/services/gaia/things/requests.server';
+import {ThingsProvider} from '~/services/gaia/things/state';
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === 'DELETE') {
@@ -18,7 +21,7 @@ export const action: ActionFunction = async ({request}) => {
     const id = result.get('id') as string;
 
     if (id) {
-      await deleteThing(request, id);
+      await deleteThing(id);
 
       return jsonWithError({result: null}, 'Thing deleted');
     }
@@ -32,7 +35,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const title = t('things.meta.title');
   const description = t('things.meta.description');
 
-  const things = await getAllThings(request);
+  const things = await getAllThings();
 
   return json({description, things, title});
 };
