@@ -7,4 +7,11 @@ type GaiaServerResponse = {
 
 const apiInstance = create<GaiaServerResponse>();
 
-export const {api, setAcceptLanguage, setAuthorization} = apiInstance;
+export const {api} = apiInstance;
+
+const {setAcceptLanguage, setAuthorization} = apiInstance;
+
+export default {
+  setAcceptLanguage,
+  setAuthorization,
+};

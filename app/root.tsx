@@ -12,6 +12,7 @@ import {getToast, setToastCookieOptions} from 'remix-toast';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
 import i18next from '~/i18next.server';
+import {setApiLanguage} from '~/services';
 import {getAuthenticatedUser} from '~/sessions.server/auth';
 import {getLanguageSession} from '~/sessions.server/language';
 import {getThemeSession} from '~/sessions.server/theme';
@@ -34,6 +35,8 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const languageSession = await getLanguageSession(request);
 
   const language = languageSession.get() || (await i18next.getLocale(request));
+
+  setApiLanguage(language);
 
   const themeSession = await getThemeSession(request);
 
