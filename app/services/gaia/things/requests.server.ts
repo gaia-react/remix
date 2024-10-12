@@ -1,27 +1,27 @@
-import {GAIA_ENDPOINTS} from '../endpoints';
 import {api} from '../index';
+import {GAIA_URLS} from '../urls';
 import {thingSchema, thingsSchema} from './parsers';
 
 export const getAllThings = async () => {
-  const result = await api(GAIA_ENDPOINTS.things);
+  const result = await api(GAIA_URLS.things);
 
   return thingsSchema.parse(result.data);
 };
 
 export const getThingById = async (id: string) => {
-  const result = await api(GAIA_ENDPOINTS.thingsId, {pathParams: {id}});
+  const result = await api(GAIA_URLS.thingsId, {pathParams: {id}});
 
   return thingSchema.parse(result.data);
 };
 
 export const createThing = async (body: FormData) => {
-  const result = await api(GAIA_ENDPOINTS.things, {body, method: 'POST'});
+  const result = await api(GAIA_URLS.things, {body, method: 'POST'});
 
   return thingSchema.parse(result.data);
 };
 
 export const updateThing = async (body: FormData) => {
-  const result = await api(GAIA_ENDPOINTS.thingsId, {
+  const result = await api(GAIA_URLS.thingsId, {
     body,
     method: 'PUT',
     pathParams: {id: body.get('id')},
@@ -31,4 +31,4 @@ export const updateThing = async (body: FormData) => {
 };
 
 export const deleteThing = async (id: string) =>
-  api(GAIA_ENDPOINTS.thingsId, {method: 'DELETE', pathParams: {id}});
+  api(GAIA_URLS.thingsId, {method: 'DELETE', pathParams: {id}});

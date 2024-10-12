@@ -1,9 +1,9 @@
-import {GAIA_ENDPOINTS} from '../endpoints';
 import {api} from '../index';
+import {GAIA_URLS} from '../urls';
 import {userSchema} from './parsers';
 
 export const login = async (body: FormData) => {
-  const result = await api(GAIA_ENDPOINTS.login, {
+  const result = await api(GAIA_URLS.login, {
     body,
     method: 'POST',
   });

@@ -1,28 +1,10 @@
-import type {Options} from 'ky';
+import type {Hooks, Options} from 'ky';
 import type {StringifyOptions} from 'query-string';
 import queryString from 'query-string';
 import {tryCatch} from '~/utils/function';
 import {toCamelCase, toSnakeCase} from '~/utils/object';
 
-export const getBaseUrl = () => {
-  if (process.env.API_URL) {
-    // server api call
-    return process.env.API_URL;
-  }
-
-  if (typeof window !== 'undefined' && window.process.env.API_URL) {
-    // client api call
-    return window.process.env.API_URL;
-  }
-
-  // fallback
-  return '';
-};
-
-export const requestToSnakeCase = async (
-  request: Request,
-  options: Options
-) => {
+const requestToSnakeCase = async (request: Request, options: Options) => {
   if (options.body && !(options.body instanceof FormData)) {
     const body = JSON.stringify(
       toSnakeCase(JSON.parse(options.body as string))
@@ -33,7 +15,7 @@ export const requestToSnakeCase = async (
   }
 };
 
-export const responseToCamelCase = async (
+const responseToCamelCase = async (
   _request: Request,
   _options: Options,
   response: Response
@@ -48,6 +30,15 @@ export const responseToCamelCase = async (
     return result;
   }
 };
+
+export const getHooks = (useSnakeCase?: boolean, hooks?: Hooks) =>
+  useSnakeCase ?
+    {
+      afterResponse: [responseToCamelCase, ...(hooks?.afterResponse ?? [])],
+      beforeRequest: [requestToSnakeCase, ...(hooks?.beforeRequest ?? [])],
+      ...hooks,
+    }
+  : hooks;
 
 export const appendSearchParams = (
   uri: string,
@@ -101,3 +92,18 @@ export const getUri = (
     useSnakeCase?: boolean;
   } = {}
 ) => appendSearchParams(setPathParams(uri, pathParams), options);
+
+export const getBaseUrl = () => {
+  if (process.env.API_URL) {
+    // server api call
+    return process.env.API_URL;
+  }
+
+  if (typeof window !== 'undefined' && window.process.env.API_URL) {
+    // client api call
+    return window.process.env.API_URL;
+  }
+
+  // fallback
+  return '';
+};

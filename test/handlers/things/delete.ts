@@ -1,10 +1,10 @@
 import {delay, http} from 'msw';
 import database from 'test/mocks/database';
 import {DELAY} from 'test/utils';
-import {GAIA_ENDPOINTS} from '~/services/gaia/endpoints';
+import {GAIA_URLS} from '~/services/gaia/urls';
 
 export default http.delete(
-  `${process.env.API_URL}${GAIA_ENDPOINTS.thingsId}`,
+  `${process.env.API_URL}${GAIA_URLS.thingsId}`,
   async ({params}) => {
     if (!params.id) {
       return new Response(

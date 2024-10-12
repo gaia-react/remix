@@ -1,52 +1,29 @@
 import ky from 'ky';
+import type {Options} from 'ky';
 import type {StringifyOptions} from 'query-string';
-import {compact} from '~/utils/object';
-import {
-  getBaseUrl,
-  getUri,
-  requestToSnakeCase,
-  responseToCamelCase,
-} from './utils';
+import {getBaseUrl, getHooks, getUri} from './utils';
 
-type BodyJson =
-  | {body?: FormData; json?: never}
-  | {body?: never; json?: Record<string, unknown>};
-
-type WithBodyJson = {
-  method: 'POST' | 'PUT';
-} & BodyJson;
-
-type WithoutBodyJson = {
-  body?: never;
-  json?: never;
-  method?: 'DELETE' | 'GET' | 'PATCH';
-};
+type CreateOptions = {
+  arrayFormat?: StringifyOptions['arrayFormat'];
+  useSnakeCase?: boolean;
+} & Options;
 
 type RequestOptions = {
-  headers?: Headers | Record<string, string>;
   pathParams?: Record<string, unknown>;
   searchParams?: Record<string, unknown>;
-} & (WithBodyJson | WithoutBodyJson);
+} & Options;
 
-type ApiOptions = {
-  arrayFormat?: StringifyOptions['arrayFormat'];
-  prefixUrl: string;
-  useSnakeCase?: boolean;
-};
-
-export const create = <R>(apiOptions?: ApiOptions) => {
-  const {
-    arrayFormat = 'comma',
-    prefixUrl = getBaseUrl(),
-    useSnakeCase = true,
-  } = apiOptions ?? {};
-
-  const beforeRequest = useSnakeCase ? [requestToSnakeCase] : [];
-  const afterResponse = useSnakeCase ? [responseToCamelCase] : [];
-
+export const create = <ApiResponseType>({
+  arrayFormat = 'comma',
+  hooks,
+  prefixUrl = getBaseUrl(),
+  useSnakeCase = true,
+  ...apiOptions
+}: CreateOptions = {}) => {
   const kyInstance = ky.create({
-    hooks: {afterResponse, beforeRequest},
+    hooks: getHooks(useSnakeCase, hooks),
     prefixUrl,
+    ...apiOptions,
   });
 
   const setAuthorization = (token: string) => {
@@ -73,28 +50,18 @@ export const create = <R>(apiOptions?: ApiOptions) => {
     });
   };
 
-  const api = async (uri: string, options?: RequestOptions) => {
-    const {
-      body,
-      headers,
-      json,
-      method = 'GET',
-      pathParams,
-      searchParams,
-    } = options ?? {};
-
-    return kyInstance<R>(
-      getUri(uri, {
-        arrayFormat,
-        pathParams,
-        searchParams,
-      }),
-      compact({body, headers, json, method})
+  const api = async (
+    uri: string,
+    {pathParams, searchParams, ...options}: RequestOptions = {}
+  ) =>
+    kyInstance<ApiResponseType>(
+      getUri(uri, {arrayFormat, pathParams, searchParams, useSnakeCase}),
+      options
     ).json();
-  };
 
   return {
     api,
+    ky: kyInstance,
     setAcceptLanguage,
     setAuthorization,
   };

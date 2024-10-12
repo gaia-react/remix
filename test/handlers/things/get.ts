@@ -1,9 +1,9 @@
 import {http} from 'msw';
 import database from 'test/mocks/database';
-import {GAIA_ENDPOINTS} from '~/services/gaia/endpoints';
+import {GAIA_URLS} from '~/services/gaia/urls';
 
 const one = http.get(
-  `${process.env.API_URL}${GAIA_ENDPOINTS.thingsId}`,
+  `${process.env.API_URL}${GAIA_URLS.thingsId}`,
   ({params}) => {
     if (!params.id) {
       return new Response(
@@ -36,7 +36,7 @@ const one = http.get(
 );
 
 const all = http.get(
-  `${process.env.API_URL}${GAIA_ENDPOINTS.things}`,
+  `${process.env.API_URL}${GAIA_URLS.things}`,
   () =>
     new Response(
       JSON.stringify({

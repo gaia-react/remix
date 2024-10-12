@@ -1,11 +1,11 @@
 import {http} from 'msw';
 import SparkMD5 from 'spark-md5';
 import database from 'test/mocks/database';
-import {GAIA_ENDPOINTS} from '~/services/gaia/endpoints';
+import {GAIA_URLS} from '~/services/gaia/urls';
 import {tryCatch} from '~/utils/function';
 
 export default http.post(
-  `${process.env.API_URL}${GAIA_ENDPOINTS.login}`,
+  `${process.env.API_URL}${GAIA_URLS.login}`,
   async ({request}) => {
     const [error, login] = await tryCatch(async () => {
       const data = await request.formData();

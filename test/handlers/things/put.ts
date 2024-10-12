@@ -1,11 +1,11 @@
 import {delay, http} from 'msw';
 import database from 'test/mocks/database';
 import {date, DELAY} from 'test/utils';
-import {GAIA_ENDPOINTS} from '~/services/gaia/endpoints';
+import {GAIA_URLS} from '~/services/gaia/urls';
 import {tryCatch} from '~/utils/function';
 
 export default http.put(
-  `${process.env.API_URL}${GAIA_ENDPOINTS.thingsId}`,
+  `${process.env.API_URL}${GAIA_URLS.thingsId}`,
   async ({params, request}) => {
     const [error, thing] = await tryCatch(async () => {
       const data = await request.formData();
