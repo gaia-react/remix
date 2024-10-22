@@ -5,13 +5,4 @@ type GaiaServerResponse = {
   error: Error;
 };
 
-const apiInstance = create<GaiaServerResponse>();
-
-export const {api} = apiInstance;
-
-const {setAcceptLanguage, setAuthorization} = apiInstance;
-
-export default {
-  setAcceptLanguage,
-  setAuthorization,
-};
+export const api = create<GaiaServerResponse>();

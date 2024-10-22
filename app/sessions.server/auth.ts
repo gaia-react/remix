@@ -3,6 +3,7 @@ import {Authenticator} from 'remix-auth';
 import {FormStrategy} from 'remix-auth-form';
 import SparkMD5 from 'spark-md5';
 import {env} from '~/env.server';
+import {setApiAuthorization} from '~/services/api';
 import {login} from '~/services/gaia/auth/requests.server';
 import type {User} from '~/services/gaia/auth/types';
 
@@ -38,7 +39,13 @@ authenticator.use(
     formData.set('email', form.get('email') as string);
     formData.set('password', hashedPassword);
 
-    return login(formData);
+    const user = await login(formData);
+
+    if (user) {
+      setApiAuthorization(user.token);
+    }
+
+    return user;
   }),
   'email-password'
 );

@@ -12,7 +12,7 @@ import {getToast, setToastCookieOptions} from 'remix-toast';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
 import i18next from '~/i18next.server';
-import {setApiLanguage} from '~/services';
+import {setApiLanguage} from '~/services/api';
 import {getAuthenticatedUser} from '~/sessions.server/auth';
 import {getLanguageSession} from '~/sessions.server/language';
 import {getThemeSession} from '~/sessions.server/theme';

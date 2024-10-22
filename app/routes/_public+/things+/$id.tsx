@@ -7,6 +7,7 @@ import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import {redirectWithInfo} from 'remix-toast';
 import ThingPage from '~/pages/Public/Things/ThingPage';
+import {handleRequest} from '~/services/api/helpers';
 import {
   getThingById,
   updateThing,
@@ -16,7 +17,16 @@ export const action: ActionFunction = async ({request}) => {
   if (request.method === 'PUT') {
     const formData = await request.formData();
 
-    await updateThing(formData);
+    const [error, result] = await handleRequest(async () =>
+      updateThing(formData)
+    );
+
+    if (error) {
+      return error;
+    }
+
+    // eslint-disable-next-line no-console
+    console.log(result);
 
     return redirectWithInfo('/things', 'Thing updated', {status: 303});
   }
