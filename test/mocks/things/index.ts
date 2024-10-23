@@ -7,7 +7,7 @@ export const serverThingSchema = z.object({
   description: z.string(),
   id: z.string(),
   name: z.string(),
-  updated_at: z.string().datetime().nullable(),
+  updated_at: z.string().datetime().nullable().optional(),
 });
 
 export type ServerThing = z.infer<typeof serverThingSchema>;

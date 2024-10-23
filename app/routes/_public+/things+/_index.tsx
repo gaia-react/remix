@@ -5,14 +5,12 @@ import type {
 } from '@remix-run/node';
 import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
-import {jsonWithError} from 'remix-toast';
+import {jsonWithError, jsonWithSuccess} from 'remix-toast';
 import i18next from '~/i18next.server';
 import AllThingsPage from '~/pages/Public/Things/AllThingsPage';
-import {
-  deleteThing,
-  getAllThings,
-} from '~/services/gaia/things/requests.server';
+import {attempt} from '~/services/api/helpers';
 import {ThingsProvider} from '~/services/gaia/things/state';
+import {api} from '~/services/index.server';
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === 'DELETE') {
@@ -21,9 +19,17 @@ export const action: ActionFunction = async ({request}) => {
     const id = result.get('id') as string;
 
     if (id) {
-      await deleteThing(id);
+      const t = await i18next.getFixedT(request, 'pages');
 
-      return jsonWithError({result: null}, 'Thing deleted');
+      const [error] = await attempt(async () =>
+        api.gaia.things.deleteThing(id)
+      );
+
+      if (error) {
+        return jsonWithError({result: null}, error.statusText);
+      }
+
+      return jsonWithSuccess({result: null}, t('things.thingDeleted'));
     }
   }
 
@@ -35,7 +41,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const title = t('things.meta.title');
   const description = t('things.meta.description');
 
-  const things = await getAllThings();
+  const things = await api.gaia.things.getAllThings();
 
   return json({description, things, title});
 };

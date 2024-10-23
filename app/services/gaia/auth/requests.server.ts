@@ -1,4 +1,4 @@
-import {api} from '../index';
+import {api} from '../api';
 import {GAIA_URLS} from '../urls';
 import {userSchema} from './parsers';
 

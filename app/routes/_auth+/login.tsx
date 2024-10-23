@@ -25,7 +25,9 @@ export const action: ActionFunction = async ({request}) => {
     }
 
     if (error instanceof AuthorizationError) {
-      return {error: 'invalidCredentials'};
+      const t = await i18next.getFixedT(request, 'errors');
+
+      return {error: t('invalidCredentials')};
     }
 
     return jsonWithError({result: null}, error.message);

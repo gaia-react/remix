@@ -6,36 +6,36 @@ import type {
 import {json} from '@remix-run/node';
 import {useLoaderData} from '@remix-run/react';
 import {redirectWithInfo} from 'remix-toast';
+import i18next from '~/i18next.server';
 import ThingPage from '~/pages/Public/Things/ThingPage';
-import {handleRequest} from '~/services/api/helpers';
-import {
-  getThingById,
-  updateThing,
-} from '~/services/gaia/things/requests.server';
+import {attempt} from '~/services/api/helpers';
+import {api} from '~/services/index.server';
 
 export const action: ActionFunction = async ({request}) => {
   if (request.method === 'PUT') {
     const formData = await request.formData();
 
-    const [error, result] = await handleRequest(async () =>
-      updateThing(formData)
+    const [error, result] = await attempt(async () =>
+      api.gaia.things.updateThing(formData)
     );
 
+    const t = await i18next.getFixedT(request, 'pages');
+
     if (error) {
-      return error;
+      return json({error: t('things.duplicateName')}, error);
     }
 
     // eslint-disable-next-line no-console
     console.log(result);
 
-    return redirectWithInfo('/things', 'Thing updated', {status: 303});
+    return redirectWithInfo('/things', t('things.thingUpdated'), {status: 303});
   }
 
   return json(null, {status: 400});
 };
 
 export const loader = async ({params}: LoaderFunctionArgs) => {
-  const thing = await getThingById(params.id!);
+  const thing = await api.gaia.things.getThingById(params.id!);
 
   return json({thing});
 };

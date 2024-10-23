@@ -1,6 +1,5 @@
 import type {FC} from 'react';
 import {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
 import {faClose} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {useActionData} from '@remix-run/react';
@@ -16,19 +15,13 @@ type FormActionData = {
 };
 
 const FormError: FC<FormResultProps> = ({className, hide}) => {
-  const {t} = useTranslation('errors');
   const {error} = useActionData<FormActionData>() ?? {};
 
   const [result, setResult] = useState<string>('');
 
   useEffect(() => {
-    setResult(
-      hide ? ''
-        // @ts-ignore
-      : error ? t(error)
-      : ''
-    );
-  }, [error, hide, t]);
+    setResult(hide ? '' : (error ?? ''));
+  }, [error, hide]);
 
   if (!result) {
     return null;
