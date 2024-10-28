@@ -1,11 +1,10 @@
 import {http} from 'msw';
 import database from 'test/mocks/database';
-import {getLanguage} from 'test/utils';
-import {THINGS_URI} from '~/services/api/uris';
+import {GAIA_URLS} from '~/services/gaia/urls';
 
 const one = http.get(
-  `${process.env.API_URL}${THINGS_URI}/:id`,
-  ({params, request}) => {
+  `${process.env.API_URL}${GAIA_URLS.thingsId}`,
+  ({params}) => {
     if (!params.id) {
       return new Response(
         JSON.stringify({
@@ -15,7 +14,7 @@ const one = http.get(
       );
     }
 
-    const data = database[getLanguage(request)].things.findFirst({
+    const data = database.things.findFirst({
       where: {
         id: {
           equals: String(params.id),
@@ -37,11 +36,11 @@ const one = http.get(
 );
 
 const all = http.get(
-  `${process.env.API_URL}${THINGS_URI}`,
-  ({request}) =>
+  `${process.env.API_URL}${GAIA_URLS.things}`,
+  () =>
     new Response(
       JSON.stringify({
-        data: database[getLanguage(request)].things.getAll(),
+        data: database.things.getAll(),
       })
     )
 );

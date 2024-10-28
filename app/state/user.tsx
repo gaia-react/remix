@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from 'react';
 import {createContext, useContext} from 'react';
-import type {User} from '~/services/api/auth/types';
+import type {User} from '~/services/gaia/auth/types';
 import type {Maybe} from '~/types';
 
 // Based on Kent C Dodds' blog post:

@@ -2,12 +2,20 @@ import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useSubmit} from '@remix-run/react';
 import {useForm} from '@rvf/remix';
+import {withZod} from '@rvf/zod';
+import {z} from 'zod';
 import Button from '~/components/Button';
 import FormActions from '~/components/Form/FormActions';
 import FormError from '~/components/Form/FormError';
 import InputEmail from '~/components/Form/InputEmail';
 import InputPassword from '~/components/Form/InputPassword';
-import validators from '~/validators';
+
+const validator = withZod(
+  z.object({
+    email: z.string().email(),
+    password: z.string().min(6),
+  })
+);
 
 const LoginPage: FC = () => {
   const {t} = useTranslation('auth');
@@ -18,7 +26,7 @@ const LoginPage: FC = () => {
     defaultValues: {email: 'user@domain.com', password: ''},
     handleSubmit: (formData) => submit(formData, {method: 'post'}),
     submitSource: 'dom',
-    validator: validators.auth.login,
+    validator,
   });
 
   return (

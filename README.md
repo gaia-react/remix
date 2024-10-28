@@ -31,7 +31,7 @@ GAIA React has many great features built-in:
 - Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
 - [RVF](https://www.rvf-js.io/) for form management and validation
 - [FontAwesome](https://fontawesome.com/) icons
-- A convenient and flexible wrapper around fetch that simplifies API calls
+- A convenient and flexible way to access your API services built on [Ky](https://github.com/sindresorhus/ky)
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
 - Dark mode support

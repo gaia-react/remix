@@ -7,3 +7,5 @@ export const thingSchema = z.object({
   name: z.string(),
   updatedAt: z.string().datetime().nullable().optional(),
 });
+
+export const thingsSchema = z.array(thingSchema);

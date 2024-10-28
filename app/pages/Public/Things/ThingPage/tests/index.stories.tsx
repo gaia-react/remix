@@ -1,9 +1,7 @@
-import {useTranslation} from 'react-i18next';
 import type {Meta, StoryFn} from '@storybook/react';
 import database from 'test/mocks/database';
 import stubs from 'test/stubs';
-import type {Language} from '~/languages';
-import type {Thing} from '~/services/api/things/types';
+import type {Things} from '~/services/gaia/things/types';
 import {toCamelCase} from '~/utils/object';
 import ThingPage from '../index';
 
@@ -24,13 +22,7 @@ const meta: Meta = {
 export default meta;
 
 export const Default: StoryFn = () => {
-  const {
-    i18n: {language},
-  } = useTranslation();
-
-  const things = database[language as Language].things
-    .getAll()
-    .map(toCamelCase) as Thing[];
+  const things = database.things.getAll().map(toCamelCase) as Things;
 
   return (
     <div className="p-4">

@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from 'react';
 import {createContext, useContext} from 'react';
-import type {Thing} from '~/services/api/things/types';
+import type {Things} from '~/services/gaia/things/types';
 import type {Maybe} from '~/types';
 
 // Based on Kent C Dodds' blog post:
@@ -8,7 +8,7 @@ import type {Maybe} from '~/types';
 
 // This is an example of a read-only context. See the GAIA docs for more info.
 
-type ThingsContextValue = Maybe<Thing[]>;
+type ThingsContextValue = Maybe<Things>;
 
 const ThingsContext = createContext<ThingsContextValue>(undefined);
 
@@ -24,7 +24,7 @@ export const useThings = () => {
 
 type ThingsProviderProps = {
   children: ReactNode;
-  things?: Maybe<Thing[]>;
+  things?: Maybe<Things>;
 };
 
 export const ThingsProvider: FC<ThingsProviderProps> = ({children, things}) => (

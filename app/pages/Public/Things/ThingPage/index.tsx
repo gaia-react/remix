@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 import FormActions from '~/components/Form/FormActions';
 import InputText from '~/components/Form/InputText';
 import LinkButton from '~/components/LinkButton';
-import type {Thing} from '~/services/api/things/types';
+import type {Thing} from '~/services/gaia/things/types';
 
 type ThingPageProps = {
   className?: string;

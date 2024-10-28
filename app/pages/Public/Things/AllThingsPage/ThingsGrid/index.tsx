@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useThings} from '~/services/api/things/state';
+import {useThings} from '~/services/gaia/things/state';
 import ThingCard from './ThingCard';
 
 const ThingsGrid: FC = () => {

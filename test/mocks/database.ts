@@ -2,25 +2,13 @@ import {factory} from '@mswjs/data';
 import things from './things';
 import user from './user';
 
-const en = factory({
-  things: things.schema,
-  user: user.schema,
-});
-
-const ja = factory({
+const database = factory({
   things: things.schema,
   user: user.schema,
 });
 
 export const resetTestData = () => {
-  en.user.delete({
-    where: {
-      id: {
-        equals: '1',
-      },
-    },
-  });
-  ja.user.delete({
+  database.user.delete({
     where: {
       id: {
         equals: '1',
@@ -28,14 +16,7 @@ export const resetTestData = () => {
     },
   });
 
-  en.things.deleteMany({
-    where: {
-      id: {
-        notIn: ['0'],
-      },
-    },
-  });
-  ja.things.deleteMany({
+  database.things.deleteMany({
     where: {
       id: {
         notIn: ['0'],
@@ -43,13 +24,10 @@ export const resetTestData = () => {
     },
   });
 
-  en.user.create(user.en);
-  ja.user.create(user.ja);
-
-  things.en.forEach(en.things.create);
-  things.ja.forEach(ja.things.create);
+  database.user.create(user.data);
+  things.data.forEach(database.things.create);
 };
 
 resetTestData();
 
-export default {en, ja} as Record<string, typeof en>;
+export default database;

@@ -193,6 +193,7 @@ const shared = {
     'unicorn/no-null': 'off',
     'unicorn/no-useless-undefined': 'off',
     'unicorn/prefer-export-from': 'off',
+    'unicorn/prefer-global-this': 'off',
     'unicorn/prefer-set-has': 'off',
     'unicorn/prefer-switch': 'off',
     'unicorn/prefer-ternary': 'off',
