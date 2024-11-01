@@ -112,7 +112,10 @@ const shared = {
         internalPattern: ['~/**'],
         newlinesBetween: 'never',
         groups: [
+          'react-type',
           'react',
+          'react-other-type',
+          'react-other',
           ['external-type', 'external'],
           ['builtin-type', 'builtin'],
           ['internal-type', 'internal'],
@@ -125,10 +128,12 @@ const shared = {
         ],
         customGroups: {
           value: {
-            react: ['react', 'react-*'],
+            react: ['react'],
+            'react-other': ['react-*'],
           },
           type: {
-            react: ['react', 'react-*'],
+            'react-type': ['react'],
+            'react-other-type': ['react-*'],
           },
         },
       },
