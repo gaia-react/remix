@@ -163,7 +163,7 @@ const shared = {
       'error',
       {
         propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
-        rule: '^((is|has|can|show|hide)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required))',
+        rule: '^((is|has|can|show|hide)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required|checked))',
       },
     ],
     'react/function-component-definition': 'off',
@@ -312,6 +312,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': 'off',
         '@typescript-eslint/method-signature-style': 'error',
         '@typescript-eslint/no-unused-vars': 'off',
+        'prefer-arrow/prefer-arrow-functions': 'off',
       },
     },
     {
@@ -395,12 +396,6 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.d.ts'],
-      rules: {
-        'prefer-arrow/prefer-arrow-functions': 'off',
-      },
-    },
-    {
       files: [
         '**/*.stories.tsx',
         'app/root.tsx',
@@ -420,8 +415,6 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-await-in-loop': 'off',
         'no-restricted-syntax': 'off',
-        // Remix hydration requires waiting for network idle
-        'playwright/no-networkidle': 'off',
       },
     },
   ],
