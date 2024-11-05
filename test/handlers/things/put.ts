@@ -20,6 +20,9 @@ export default http.put(
 
     const duplicateName = database.things.findFirst({
       where: {
+        id: {
+          notEquals: thing.id,
+        },
         name: {
           equals: thing.name,
         },
@@ -27,7 +30,7 @@ export default http.put(
     });
 
     if (duplicateName) {
-      return new Response(null, {status: 409, statusText: 'duplicateName'});
+      return new Response(null, {status: 409, statusText: 'duplicateThing'});
     }
 
     const data = database.things.update({
