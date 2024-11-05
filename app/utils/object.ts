@@ -4,7 +4,11 @@ import SparkMD5 from 'spark-md5';
 export const every = (
   obj: Record<string, unknown>,
   predicate: (value: unknown) => boolean
-): boolean => Object.values(obj).every(predicate);
+): boolean => {
+  const values = Object.values(obj);
+
+  return values.length > 0 && values.every(predicate);
+};
 
 export const some = (
   obj: Record<string, unknown>,

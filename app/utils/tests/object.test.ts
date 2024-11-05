@@ -17,7 +17,7 @@ const predicate = (value: any) => !!value;
 
 describe('object utils', () => {
   test('every', () => {
-    expect(every({}, predicate)).toBe(true);
+    expect(every({}, predicate)).toBe(false);
     expect(every({hello: 'world'}, predicate)).toBe(true);
     expect(every({foo: 0, hello: 'world'}, predicate)).toBe(false);
   });

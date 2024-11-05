@@ -43,6 +43,18 @@ test.describe('Things CRUD', () => {
     await expect(page).toHaveURL('/things');
     await expect(page.getByTitle(/Thing/).last()).toContainText('Thing C2');
 
+    // No duplicate thing names
+    await page.getByRole('link', {name: 'Create'}).click();
+    await page.getByRole('textbox', {name: 'Name'}).fill('Thing A');
+    await page
+      .getByRole('textbox', {name: 'Description'})
+      .fill('This is a duplicate thing');
+    await page.getByRole('button', {name: 'Create'}).click();
+    await expect(
+      page.getByText(languages.en.pages.things.duplicateName)
+    ).toBeVisible();
+    await page.getByRole('link', {name: 'Cancel'}).click();
+
     // Delete the created thing
     await page.getByRole('button', {name: 'Delete'}).last().click();
     await expect(page.getByTitle(/Thing/)).toHaveCount(2);

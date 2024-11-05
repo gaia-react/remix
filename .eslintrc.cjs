@@ -112,7 +112,10 @@ const shared = {
         internalPattern: ['~/**'],
         newlinesBetween: 'never',
         groups: [
+          'react-type',
           'react',
+          'react-other-type',
+          'react-other',
           ['external-type', 'external'],
           ['builtin-type', 'builtin'],
           ['internal-type', 'internal'],
@@ -125,10 +128,12 @@ const shared = {
         ],
         customGroups: {
           value: {
-            react: ['react', 'react-*'],
+            react: ['react'],
+            'react-other': ['react-*'],
           },
           type: {
-            react: ['react', 'react-*'],
+            'react-type': ['react'],
+            'react-other-type': ['react-*'],
           },
         },
       },
@@ -163,7 +168,7 @@ const shared = {
       'error',
       {
         propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
-        rule: '^((is|has|can|show|hide)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required))',
+        rule: '^((is|has|can|show|hide)[A-Z]([A-Za-z0-9]?)+|(show|hide|disabled|required|checked))',
       },
     ],
     'react/function-component-definition': 'off',
@@ -312,6 +317,7 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': 'off',
         '@typescript-eslint/method-signature-style': 'error',
         '@typescript-eslint/no-unused-vars': 'off',
+        'prefer-arrow/prefer-arrow-functions': 'off',
       },
     },
     {
@@ -395,12 +401,6 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.d.ts'],
-      rules: {
-        'prefer-arrow/prefer-arrow-functions': 'off',
-      },
-    },
-    {
       files: [
         '**/*.stories.tsx',
         'app/root.tsx',
@@ -420,8 +420,6 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-await-in-loop': 'off',
         'no-restricted-syntax': 'off',
-        // Remix hydration requires waiting for network idle
-        'playwright/no-networkidle': 'off',
       },
     },
   ],

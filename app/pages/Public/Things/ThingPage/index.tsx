@@ -4,6 +4,7 @@ import {Form, useNavigation} from '@remix-run/react';
 import {twJoin} from 'tailwind-merge';
 import Button from '~/components/Button';
 import FormActions from '~/components/Form/FormActions';
+import FormError from '~/components/Form/FormError';
 import InputText from '~/components/Form/InputText';
 import LinkButton from '~/components/LinkButton';
 import type {Thing} from '~/services/gaia/things/types';
@@ -39,6 +40,7 @@ const ThingPage: FC<ThingPageProps> = ({className, thing}) => {
           placeholder={t('description')}
           required={true}
         />
+        <FormError />
         <FormActions>
           <LinkButton to="/things" variant="tertiary">
             {t('form.cancel')}

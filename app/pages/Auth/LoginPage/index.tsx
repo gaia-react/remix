@@ -23,7 +23,8 @@ const LoginPage: FC = () => {
   const submit = useSubmit();
 
   const form = useForm({
-    defaultValues: {email: 'user@domain.com', password: ''},
+    // eslint-disable-next-line sonarjs/no-hardcoded-credentials
+    defaultValues: {email: 'user@domain.com', password: 'passw0rd'},
     handleSubmit: (formData) => submit(formData, {method: 'post'}),
     submitSource: 'dom',
     validator,
