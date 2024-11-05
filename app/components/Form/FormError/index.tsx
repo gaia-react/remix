@@ -38,7 +38,7 @@ const FormError: FC<FormResultProps> = ({className, hide}) => {
       onClick={handleClick}
       type="button"
     >
-      <span>{result}</span>
+      <span role="alert">{result}</span>
       <FontAwesomeIcon icon={faClose} />
     </button>
   );

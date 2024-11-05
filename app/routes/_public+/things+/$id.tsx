@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({request}) => {
   if (request.method === 'PUT') {
     const formData = await request.formData();
 
-    const [error, result] = await attempt(async () =>
+    const [error] = await attempt(async () =>
       api.gaia.things.updateThing(formData)
     );
 
@@ -24,9 +24,6 @@ export const action: ActionFunction = async ({request}) => {
     if (error) {
       return json({error: t('things.duplicateName')}, error);
     }
-
-    // eslint-disable-next-line no-console
-    console.log(result);
 
     return redirectWithInfo('/things', t('things.thingUpdated'), {status: 303});
   }
