@@ -2,10 +2,9 @@ import type {
   ActionFunction,
   LoaderFunctionArgs,
   MetaFunction,
-} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {useLoaderData} from '@remix-run/react';
-import {jsonWithError, jsonWithSuccess} from 'remix-toast';
+} from 'react-router';
+import {useLoaderData} from 'react-router';
+import {dataWithError, dataWithSuccess} from 'remix-toast';
 import i18next from '~/i18next.server';
 import AllThingsPage from '~/pages/Public/Things/AllThingsPage';
 import {attempt} from '~/services/api/helpers';
@@ -26,14 +25,14 @@ export const action: ActionFunction = async ({request}) => {
       );
 
       if (error) {
-        return jsonWithError({result: null}, error.statusText);
+        return dataWithError({result: null}, error.statusText);
       }
 
-      return jsonWithSuccess({result: null}, t('things.thingDeleted'));
+      return dataWithSuccess({result: null}, t('things.thingDeleted'));
     }
   }
 
-  return json(null);
+  return null;
 };
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
@@ -43,7 +42,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
 
   const things = await api.gaia.things.getAllThings();
 
-  return json({description, things, title});
+  return {description, things, title};
 };
 
 export const meta: MetaFunction<typeof loader> = ({data}) => [

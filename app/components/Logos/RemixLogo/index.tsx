@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type RemixLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type RemixLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const RemixLogo: FC<RemixLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ? height * (659 / 165) : (width ?? 659);

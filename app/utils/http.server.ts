@@ -1,4 +1,4 @@
-import type {HeadersFunction} from '@remix-run/node';
+import type {HeadersFunction} from 'react-router';
 
 export const isProductionHost = (request: Request) =>
   request.headers.get('host') === 'domain.tld';

@@ -4,6 +4,8 @@ const shared = {
   plugins: [
     'check-file',
     'canonical',
+    'jest-dom',
+    'jest-formatting',
     'no-relative-import-paths',
     'no-switch-statements',
     'perfectionist',
@@ -38,15 +40,18 @@ const shared = {
     'check-file/filename-naming-convention': [
       'error',
       {
-        'app/{components,pages}/**/*.ts': 'CAMEL_CASE',
-        'app/{components,pages}/**/!(assets|hooks|state|tests)/*.tsx':
-          'index+()',
-        'app/{components,pages}/**/(assets|hooks|state|tests)/*.{ts,tsx}':
-          'KEBAB_CASE',
-        'app/languages/**/*.ts': '(_index)|([a-z])*([a-z0-9])*(-+([a-z0-9]))',
-        '**/hooks/*.{ts,tsx}': 'CAMEL_CASE',
+        // Generally, non-component files must be named kebab-case
+        'app/{components,pages}/**/*.ts': 'KEBAB_CASE',
         'app/state/*.tsx': 'KEBAB_CASE',
         'test/**/*.ts?(x)': 'KEBAB_CASE',
+        // React component files must be named index.tsx
+        'app/{components,pages}/**/!(assets|hooks|state|tests|utils)/*.tsx':
+          'index+()',
+        // Non-component files inside specific components folders must be kebab-case
+        'app/{components,pages}/**/(assets|hooks|state|tests|utils)/*.{ts,tsx}':
+          'KEBAB_CASE',
+        // React hook files must be camelCase (to match the hook name)
+        '**/hooks/*.{ts,tsx}': 'CAMEL_CASE',
       },
       {
         ignoreMiddleExtensions: true,
@@ -55,12 +60,15 @@ const shared = {
     'check-file/folder-naming-convention': [
       'error',
       {
-        'app/components/**/': '(assets|hooks|state|tests|[A-Z][a-zA-Z0-9]*)',
+        // enforce PascalCase component folders, and allow assets, hooks, tests, and utils subfolders
+        'app/components/**/':
+          '(assets|hooks|state|tests|utils|[A-Z][a-zA-Z0-9]*)',
       },
     ],
     'check-file/folder-match-with-fex': [
       'error',
       {
+        // require stories and test files to be inside tests folders
         '*.(stories|test).{ts,tsx}': 'app/**/tests/',
       },
     ],
@@ -109,7 +117,6 @@ const shared = {
       'error',
       {
         type: 'natural',
-        internalPattern: ['~/**'],
         newlinesBetween: 'never',
         groups: [
           'react-type',
@@ -122,18 +129,19 @@ const shared = {
           ['parent-type', 'parent'],
           ['sibling-type', 'sibling'],
           ['index-type', 'index'],
-          'side-effect',
           ['object', 'unknown'],
           'style',
+          'side-effect',
+          'side-effect-style',
         ],
         customGroups: {
           value: {
-            react: ['react'],
-            'react-other': ['react-*'],
+            react: ['^react$'],
+            'react-other': ['^react-.+'],
           },
           type: {
-            'react-type': ['react'],
-            'react-other-type': ['react-*'],
+            'react-type': ['^react$'],
+            'react-other-type': ['^react-.+'],
           },
         },
       },
@@ -183,7 +191,6 @@ const shared = {
     'sonarjs/fixme-tag': 'off',
     'sonarjs/no-nested-conditional': 'off',
     'sonarjs/no-commented-code': 'off',
-    'sonarjs/no-misused-promises': ['error', {checksVoidReturn: false}],
     'sonarjs/todo-tag': 'off',
     'sonarjs/regex-complexity': 'off',
     'spaced-comment': 'off',
@@ -322,7 +329,11 @@ module.exports = {
     },
     {
       files: ['*.test.ts?(x)', '*.stories.ts?(x)'],
-      extends: ['plugin:vitest/legacy-recommended'],
+      extends: [
+        'plugin:jest-dom/recommended',
+        'plugin:jest-formatting/recommended',
+        'plugin:vitest/legacy-recommended',
+      ],
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         'guard-for-in': 'off',
@@ -338,7 +349,11 @@ module.exports = {
     },
     {
       files: ['test/**/*.ts?(x)'],
-      extends: ['plugin:vitest/legacy-recommended'],
+      extends: [
+        'plugin:jest-dom/recommended',
+        'plugin:jest-formatting/recommended',
+        'plugin:vitest/legacy-recommended',
+      ],
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         'import/no-extraneous-dependencies': 'off',
@@ -389,7 +404,7 @@ module.exports = {
       },
     },
     {
-      files: ['app/?(components|pages|services|utils)/**/*.ts?(x)'],
+      files: ['app/?(components|hooks|pages|services|utils)/**/*.ts?(x)'],
       rules: {
         'max-lines': ['error', 200],
       },
@@ -398,6 +413,7 @@ module.exports = {
       files: ['app/languages/**/*.ts'],
       rules: {
         'sonarjs/no-hardcoded-credentials': 'off',
+        'sonarjs/no-hardcoded-passwords': 'off',
       },
     },
     {

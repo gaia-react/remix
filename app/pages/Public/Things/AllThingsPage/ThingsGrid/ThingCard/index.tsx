@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Form, useNavigation} from 'react-router';
 import {faPencil, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {Form, useNavigation} from '@remix-run/react';
 import {format} from 'date-fns';
 import {ja} from 'date-fns/locale';
 import {twMerge} from 'tailwind-merge';

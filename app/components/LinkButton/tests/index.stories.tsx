@@ -8,7 +8,7 @@ import LinkButton from '../index';
 
 const meta: Meta = {
   component: LinkButton,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
     wrap: 'w-fit p-4',

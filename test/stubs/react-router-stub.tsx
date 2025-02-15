@@ -2,26 +2,26 @@ import type {
   ActionFunction,
   ActionFunctionArgs,
   LoaderFunctionArgs,
-} from '@remix-run/node';
-import {createRemixStub} from '@remix-run/testing';
+} from 'react-router';
+import {createRoutesStub} from 'react-router';
 import {addons} from '@storybook/preview-api';
 import type {ReactRenderer} from '@storybook/react';
 import type {PartialStoryFn} from '@storybook/types';
 
 const methods = ['DELETE', 'GET', 'PATCH', 'POST', 'PUT'];
-type Method = (typeof methods)[number];
-type SimpleAction = Partial<Record<Method, string>>;
-
 type Action = ActionFunction | SimpleAction | string;
+type Method = (typeof methods)[number];
 
-type Routes = {path: string; storyId: string}[];
-
-type RemixDecoratorOptions = {
+type ReactRouterDecoratorOptions = {
   action?: Action;
   loader?: (args: LoaderFunctionArgs) => Promise<unknown>;
   path?: string;
   routes?: Routes;
 };
+
+type Routes = {path: string; storyId: string}[];
+
+type SimpleAction = Partial<Record<Method, string>>;
 
 const channel = addons.getChannel();
 
@@ -39,7 +39,7 @@ const getAction = (action?: Action) => {
     };
   }
 
-  // Advanced - Call a remix ActionFunction, and if it returns {storyId} select the story
+  // Advanced - Call a ReactRouter ActionFunction, and if it returns {storyId} select the story
   if (typeof action === 'function') {
     return async (args: ActionFunctionArgs) => {
       const result = await action(args);
@@ -78,11 +78,11 @@ const getAction = (action?: Action) => {
 };
 
 const decorator =
-  (options?: RemixDecoratorOptions) =>
+  (options?: ReactRouterDecoratorOptions) =>
   (Story: PartialStoryFn<ReactRenderer>) => {
     const {action, path = '/', routes = [], ...rest} = options ?? {};
 
-    const remixStub = createRemixStub([
+    const reactRouterStub = createRoutesStub([
       {
         action: getAction(action),
         Component: () => <Story />,
@@ -102,7 +102,7 @@ const decorator =
       })),
     ]);
 
-    return remixStub({initialEntries: [path]});
+    return reactRouterStub({initialEntries: [path]});
   };
 
 export default decorator;

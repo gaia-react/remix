@@ -1,17 +1,18 @@
 import ky from 'ky';
 import type {KyInstance, Options} from 'ky';
 import type {StringifyOptions} from 'query-string';
+import i18n from '~/i18n';
 import {getBaseUrl, getHooks, getUri} from './utils';
 
-type CreateOptions = {
+type CreateOptions = Options & {
   arrayFormat?: StringifyOptions['arrayFormat'];
   useSnakeCase?: boolean;
-} & Options;
+};
 
-type RequestOptions = {
+type RequestOptions = Options & {
   pathParams?: Record<string, unknown>;
   searchParams?: Record<string, unknown>;
-} & Options;
+};
 
 const instances: KyInstance[] = [];
 
@@ -55,7 +56,7 @@ export const setApiAuthorization = (token: string) => {
   });
 };
 
-let apiLanguage: string;
+const apiLanguage = i18n.fallbackLng;
 
 // Set Accept-Language header for all instances
 export const setApiLanguage = (language: string) => {

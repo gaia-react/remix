@@ -1,11 +1,8 @@
 import type {FC, SVGProps} from 'react';
 import {useId} from 'react';
 
-type RVFLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type RVFLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const RVFLogo: FC<RVFLogoProps> = ({height, width, ...props}) => {
   const id = useId();

@@ -2,38 +2,34 @@ import type {
   ActionFunction,
   LoaderFunctionArgs,
   MetaFunction,
-} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {AuthorizationError} from 'remix-auth';
-import {jsonWithError} from 'remix-toast';
+} from 'react-router';
+import {redirect} from 'react-router';
 import i18next from '~/i18next.server';
 import LoginPage from '~/pages/Auth/LoginPage';
-import {authenticator, requireNotAuthenticated} from '~/sessions.server/auth';
-import {tryCatch} from '~/utils/function';
+import {
+  authenticator,
+  requireNotAuthenticated,
+  sessionStorage,
+} from '~/sessions.server/auth';
 
 export const action: ActionFunction = async ({request}) => {
-  const [error] = await tryCatch(async () =>
-    authenticator.authenticate('email-password', request, {
-      successRedirect: '/profile',
-    })
-  );
+  const user = await authenticator.authenticate('form', request);
 
-  if (error) {
-    if (error instanceof Response) {
-      // authenticator throws a 302 Response on success
-      throw error;
-    }
+  if (!user) {
+    const t = await i18next.getFixedT(request, 'errors');
 
-    if (error instanceof AuthorizationError) {
-      const t = await i18next.getFixedT(request, 'errors');
-
-      return {error: t('invalidCredentials')};
-    }
-
-    return jsonWithError({result: null}, error.message);
+    return {error: t('invalidCredentials')};
   }
 
-  return null;
+  const session = await sessionStorage.getSession(
+    request.headers.get('cookie')
+  );
+
+  session.set('user', user);
+
+  throw redirect('/profile', {
+    headers: {'Set-Cookie': await sessionStorage.commitSession(session)},
+  });
 };
 
 export const loader = async ({request}: LoaderFunctionArgs) => {
@@ -42,7 +38,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const t = await i18next.getFixedT(request, 'auth');
   const title = t('login');
 
-  return json({title});
+  return {title};
 };
 
 export const meta: MetaFunction<typeof loader> = ({data}) => [

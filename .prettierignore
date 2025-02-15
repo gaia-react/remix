@@ -3,6 +3,7 @@ package-lock.json
 
 .gitignore
 .prettierignore
+.react-router
 
 /public/build
 .env.example

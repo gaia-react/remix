@@ -1,11 +1,8 @@
 /* eslint-disable max-lines */
 import type {FC, SVGProps} from 'react';
 
-type PrettierLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type PrettierLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const PrettierLogo: FC<PrettierLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ?? width ?? 210;

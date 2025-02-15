@@ -2,9 +2,8 @@ import type {
   ActionFunction,
   LoaderFunctionArgs,
   MetaFunction,
-} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {useLoaderData} from '@remix-run/react';
+} from 'react-router';
+import {data, useLoaderData} from 'react-router';
 import {redirectWithInfo} from 'remix-toast';
 import i18next from '~/i18next.server';
 import ThingPage from '~/pages/Public/Things/ThingPage';
@@ -22,25 +21,25 @@ export const action: ActionFunction = async ({request}) => {
     const t = await i18next.getFixedT(request, 'pages');
 
     if (error) {
-      return json({error: t('things.duplicateName')}, error);
+      return data({error: t('things.duplicateName')}, error);
     }
 
     return redirectWithInfo('/things', t('things.thingUpdated'), {status: 303});
   }
 
-  return json(null, {status: 400});
+  return data(null, {status: 400});
 };
 
 export const loader = async ({params}: LoaderFunctionArgs) => {
   const thing = await api.gaia.things.getThingById(params.id!);
 
-  return json({thing});
+  return {thing};
 };
 
-export const meta: MetaFunction<typeof loader> = ({data}) => [
-  {title: data?.thing.name},
+export const meta: MetaFunction<typeof loader> = (loaderData) => [
+  {title: loaderData?.data?.thing.name},
   {
-    content: data?.thing.description,
+    content: loaderData?.data?.thing.description,
     name: 'description',
   },
 ];

@@ -1,6 +1,7 @@
 import {addons} from '@storybook/preview-api';
 import isChromatic from 'chromatic/isChromatic';
 import {DARK_MODE_EVENT_NAME} from 'storybook-dark-mode';
+import ToastDecorator from '../decorators/ToastDecorator';
 import WrapDecorator from '../decorators/WrapDecorator';
 import ChromaticDecorator from './decorator';
 
@@ -34,4 +35,6 @@ if (!isChromaticSnapshot) {
 }
 
 export const decorators =
-  isChromaticSnapshot ? [WrapDecorator, ChromaticDecorator] : [WrapDecorator];
+  isChromaticSnapshot ?
+    [WrapDecorator, ChromaticDecorator, ToastDecorator]
+  : [WrapDecorator, ToastDecorator];

@@ -4,7 +4,7 @@ import Select from '../index';
 
 const meta: Meta = {
   component: Select,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
   },

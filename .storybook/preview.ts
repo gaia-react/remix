@@ -5,10 +5,9 @@ import {decorators} from './chromatic';
 import i18n from './i18next';
 import brandImage from './static/gaia-logo.png';
 import viewport from './viewport';
-import 'react-toastify/dist/ReactToastify.min.css';
+import './env';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '~/styles/tailwind.css';
-import './env';
 
 config.autoAddCss = false;
 

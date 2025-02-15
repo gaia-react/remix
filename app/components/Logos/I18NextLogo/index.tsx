@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type I18NextLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type I18NextLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const I18NextLogo: FC<I18NextLogoProps> = ({
   className,

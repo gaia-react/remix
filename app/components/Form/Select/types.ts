@@ -1,8 +1,8 @@
 import type {Option} from '../types';
 
-type SelectOptionWithValue = {
-  options?: never;
-  value: string;
+export type SelectOption = (SelectOptionWithOptions | SelectOptionWithValue) & {
+  disabled?: boolean;
+  label: string;
 };
 
 type SelectOptionWithOptions = {
@@ -10,7 +10,7 @@ type SelectOptionWithOptions = {
   value?: never;
 };
 
-export type SelectOption = {
-  disabled?: boolean;
-  label: string;
-} & (SelectOptionWithOptions | SelectOptionWithValue);
+type SelectOptionWithValue = {
+  options?: never;
+  value: string;
+};

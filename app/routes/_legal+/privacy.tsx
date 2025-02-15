@@ -1,6 +1,5 @@
-import type {LoaderFunctionArgs, MetaFunction} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {useLoaderData} from '@remix-run/react';
+import type {LoaderFunctionArgs, MetaFunction} from 'react-router';
+import {useLoaderData} from 'react-router';
 import Layout from '~/components/Layout';
 import i18next from '~/i18next.server';
 
@@ -9,7 +8,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   const title = t('legal.privacy.title');
   const description = t('legal.privacy.description');
 
-  return json({description, title});
+  return {description, title};
 };
 
 export const meta: MetaFunction<typeof loader> = ({data}) => [

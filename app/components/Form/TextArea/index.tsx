@@ -10,13 +10,13 @@ const RESIZE = {
   y: 'resize-y',
 };
 
-type TextAreaProps<T = HTMLTextAreaElement> = {
-  classNameTextArea?: string;
-  name: string;
-  onAutoSize?: () => void;
-  resize?: 'auto' | 'y';
-} & SharedInputProps &
-  TextareaHTMLAttributes<T>;
+type TextAreaProps<T = HTMLTextAreaElement> = SharedInputProps &
+  TextareaHTMLAttributes<T> & {
+    classNameTextArea?: string;
+    name: string;
+    onAutoSize?: () => void;
+    resize?: 'auto' | 'y';
+  };
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (

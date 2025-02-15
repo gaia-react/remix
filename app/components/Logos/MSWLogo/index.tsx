@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type MSWLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type MSWLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const MSWLogo: FC<MSWLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ?? width ?? 122;

@@ -50,6 +50,15 @@ export const VARIANTS: Record<Variant, string> = {
     'border border-grey-500 bg-grey-600 text-white hover:bg-grey-700 disabled:hover:bg-grey-600',
 };
 
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  IconUnion & {
+    isLoading?: boolean;
+    size?: Size;
+    variant?: Variant;
+  };
+
+export type IconUnion = MaybeIcon | OnlyIcon;
+
 type MaybeIcon = {
   children: ReactNode;
   classNameIcon?: string;
@@ -63,15 +72,6 @@ type OnlyIcon = {
   icon: IconProp;
   iconPosition?: never;
 };
-
-export type IconUnion = MaybeIcon | OnlyIcon;
-
-export type ButtonProps = {
-  isLoading?: boolean;
-  size?: Size;
-  variant?: Variant;
-} & ButtonHTMLAttributes<HTMLButtonElement> &
-  IconUnion;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

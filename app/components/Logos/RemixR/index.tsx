@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type RemixRProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type RemixRProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const RemixR: FC<RemixRProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ? height * (256 / 297) : (width ?? 256);

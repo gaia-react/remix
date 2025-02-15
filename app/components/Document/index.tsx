@@ -1,5 +1,5 @@
 import type {FC, ReactNode} from 'react';
-import {Links, Meta, Scripts, ScrollRestoration} from '@remix-run/react';
+import {Links, Meta, Scripts, ScrollRestoration} from 'react-router';
 import {ThemeHead} from '~/state/theme';
 import MetaHydrated from './MetaHydrated';
 
@@ -32,8 +32,8 @@ const Document: FC<DocumentProps> = ({
       <Links />
       <link href="https://fonts.googleapis.com" rel="preconnect" />
       <link
-        crossOrigin="anonymous"
         href="https://fonts.gstatic.com"
+        crossOrigin="anonymous"
         rel="preconnect"
       />
       <link

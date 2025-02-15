@@ -1,5 +1,5 @@
-import type {ActionFunction} from '@remix-run/node';
-import {json, redirect} from '@remix-run/node';
+import type {ActionFunction} from 'react-router';
+import {data, redirect} from 'react-router';
 import {getThemeSession} from '~/sessions.server/theme';
 import {isSupportedTheme} from '~/state/theme';
 
@@ -10,7 +10,7 @@ export const action: ActionFunction = async ({request}) => {
   const theme = form.get('theme');
 
   if (!isSupportedTheme(theme)) {
-    return json(
+    return data(
       {
         message: `theme value of ${theme} is not a valid theme`,
         ok: false,
@@ -21,7 +21,7 @@ export const action: ActionFunction = async ({request}) => {
 
   themeSession.setTheme(theme);
 
-  return json(
+  return data(
     {ok: true},
     {headers: {'Set-Cookie': await themeSession.commit()}}
   );

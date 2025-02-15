@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Form} from '@remix-run/react';
+import {Form} from 'react-router';
 import {twMerge} from 'tailwind-merge';
 import Button from '~/components/Button';
 import UserCard from '~/pages/Session/Profile/ProfilePage/UserCard';

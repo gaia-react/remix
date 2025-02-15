@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useSubmit} from '@remix-run/react';
-import {useForm} from '@rvf/remix';
+import {useSubmit} from 'react-router';
+import {useForm} from '@rvf/react-router';
 import {withZod} from '@rvf/zod';
 import {z} from 'zod';
 import Button from '~/components/Button';
@@ -23,7 +23,7 @@ const LoginPage: FC = () => {
   const submit = useSubmit();
 
   const form = useForm({
-    // eslint-disable-next-line sonarjs/no-hardcoded-credentials
+    // eslint-disable-next-line sonarjs/no-hardcoded-passwords
     defaultValues: {email: 'user@domain.com', password: 'passw0rd'},
     handleSubmit: (formData) => submit(formData, {method: 'post'}),
     submitSource: 'dom',

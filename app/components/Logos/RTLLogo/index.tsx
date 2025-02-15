@@ -1,11 +1,8 @@
 /* eslint-disable max-lines */
 import type {FC, SVGProps} from 'react';
 
-type RTLLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type RTLLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const RTLLogo: FC<RTLLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ?? width ?? 256;

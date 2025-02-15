@@ -1,17 +1,17 @@
 import type {FC} from 'react';
 import {useEffect, useState} from 'react';
+import {useActionData} from 'react-router';
 import {faClose} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useActionData} from '@remix-run/react';
 import {twMerge} from 'tailwind-merge';
+
+type FormActionData = {
+  error?: string;
+};
 
 type FormResultProps = {
   className?: string;
   hide?: boolean;
-};
-
-type FormActionData = {
-  error?: string;
 };
 
 const FormError: FC<FormResultProps> = ({className, hide}) => {

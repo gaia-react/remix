@@ -1,4 +1,4 @@
-import {Outlet} from '@remix-run/react';
+import {Outlet} from 'react-router';
 import Layout from '~/components/Layout';
 
 // This is where routes that are publicly available go

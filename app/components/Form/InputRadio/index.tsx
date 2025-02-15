@@ -2,14 +2,14 @@ import type {FC, InputHTMLAttributes, ReactNode} from 'react';
 import {twJoin, twMerge} from 'tailwind-merge';
 import type {RadioOption} from '../types';
 
-export type InputRadioProps<T = HTMLInputElement> = {
+export type InputRadioProps<T = HTMLInputElement> = InputHTMLAttributes<T> & {
   classNameLabel?: string;
   error?: ReactNode;
   isHorizontal?: boolean;
   name: string;
   option: RadioOption;
   type?: never;
-} & InputHTMLAttributes<T>;
+};
 
 const InputRadio: FC<InputRadioProps> = ({
   className,

@@ -3,7 +3,7 @@ import Field from '~/components/Form/Field';
 import type {Option} from '../types';
 import BaseRadioButtons from './BaseRadioButtons';
 
-export type RadioButtonsProps<T = HTMLInputElement> = {
+export type RadioButtonsProps<T = HTMLInputElement> = InputHTMLAttributes<T> & {
   classNameGroup?: string;
   classNameLabel?: string;
   description?: ReactNode;
@@ -13,7 +13,7 @@ export type RadioButtonsProps<T = HTMLInputElement> = {
   name: string;
   options: Option[];
   type?: never;
-} & InputHTMLAttributes<T>;
+};
 
 const RadioButtons: FC<RadioButtonsProps> = ({
   className,

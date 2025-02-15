@@ -34,7 +34,6 @@ export const ExampleProvider: FC<ExampleProviderProps> = ({
   children,
   initialState,
 }) => {
-  // eslint-disable-next-line sonarjs/hook-use-state
   const value = useState<Maybe<number>>(initialState);
 
   return (

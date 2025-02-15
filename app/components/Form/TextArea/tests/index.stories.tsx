@@ -4,7 +4,7 @@ import TextArea from '../index';
 
 const meta: Meta = {
   component: TextArea,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
     wrap: 'p-4 max-w-sm space-y-4',

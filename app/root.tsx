@@ -1,16 +1,15 @@
 import type {FC} from 'react';
 import {useEffect} from 'react';
+import type {LinksFunction, LoaderFunctionArgs} from 'react-router';
 import {useTranslation} from 'react-i18next';
-import {toast as notify, ToastContainer} from 'react-toastify';
+import {data, Outlet, useLoaderData} from 'react-router';
 import {config} from '@fortawesome/fontawesome-svg-core';
-import {cssBundleHref} from '@remix-run/css-bundle';
-import type {LinksFunction, LoaderFunctionArgs} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {Outlet, useLoaderData} from '@remix-run/react';
 import {useChangeLanguage} from 'remix-i18next/react';
 import {getToast, setToastCookieOptions} from 'remix-toast';
 import {twJoin} from 'tailwind-merge';
 import Document from '~/components/Document';
+import RootErrorBoundary from '~/components/RootErrorBoundary';
+import Toast, {toast as notify} from '~/components/Toast';
 import i18next from '~/i18next.server';
 import {setApiLanguage} from '~/services/api';
 import {getAuthenticatedUser} from '~/sessions.server/auth';
@@ -18,11 +17,9 @@ import {getLanguageSession} from '~/sessions.server/language';
 import {getThemeSession} from '~/sessions.server/theme';
 import State from '~/state';
 import {useTheme} from '~/state/theme';
-import tailwind from '~/styles/tailwind.css?url';
 import {isProductionHost} from '~/utils/http.server';
-import ErrorBoundary from './components/ErrorBoundary';
 import {env, envClient} from './env.server';
-import 'react-toastify/dist/ReactToastify.min.css';
+import tailwind from '~/styles/tailwind.css?url';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 config.autoAddCss = false;
@@ -46,7 +43,7 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
 
   headers.set('Vary', 'Cookie');
 
-  return json(
+  return data(
     {
       ENV: envClient,
       language,
@@ -59,17 +56,14 @@ export const loader = async ({request}: LoaderFunctionArgs) => {
   );
 };
 
-export const links: LinksFunction = () => [
-  {href: tailwind, rel: 'stylesheet'},
-  ...(cssBundleHref ? [{href: cssBundleHref, rel: 'stylesheet'}] : []),
-];
+export const links: LinksFunction = () => [{href: tailwind, rel: 'stylesheet'}];
 
 const App: FC = () => {
-  const data = useLoaderData<typeof loader>();
+  const loaderData = useLoaderData<typeof loader>();
   const [theme] = useTheme();
   const {i18n} = useTranslation();
 
-  const {ENV, language, noIndex, toast} = data;
+  const {ENV, language, noIndex, toast} = loaderData;
 
   // This hook will change the i18n instance language to the current language
   // detected by the loader, this way, when we do something to change the
@@ -79,7 +73,14 @@ const App: FC = () => {
 
   useEffect(() => {
     if (toast) {
-      notify(toast.message, {type: toast.type});
+      if (notify[toast.type]) {
+        notify[toast.type](toast);
+      } else {
+        notify.error({
+          message: `Unknown toast type ${toast.type}`,
+          type: 'error',
+        });
+      }
     }
   }, [toast]);
 
@@ -87,7 +88,7 @@ const App: FC = () => {
     <Document
       className={twJoin(theme)}
       dir={i18n.dir()}
-      isSsrTheme={!!data.theme}
+      isSsrTheme={!!loaderData.theme}
       lang={language}
       noIndex={noIndex}
     >
@@ -99,21 +100,21 @@ const App: FC = () => {
         }}
       />
       <Outlet />
-      <ToastContainer position="top-center" theme={theme ?? 'light'} />
+      <Toast />
     </Document>
   );
 };
 
 const AppWithState = () => {
-  const data = useLoaderData<typeof loader>();
+  const {theme, user} = useLoaderData<typeof loader>();
 
   return (
-    <State theme={data.theme} user={data.user}>
+    <State theme={theme} user={user}>
       <App />
     </State>
   );
 };
 
-export {ErrorBoundary};
-
 export default AppWithState;
+
+export const ErrorBoundary = RootErrorBoundary;

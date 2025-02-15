@@ -1,6 +1,5 @@
-import type {LoaderFunctionArgs} from '@remix-run/node';
-import {json} from '@remix-run/node';
-import {Outlet} from '@remix-run/react';
+import type {LoaderFunctionArgs} from 'react-router';
+import {Outlet} from 'react-router';
 import Layout from '~/components/Layout';
 import {requireAuthenticatedUser} from '~/sessions.server/auth';
 
@@ -9,7 +8,7 @@ import {requireAuthenticatedUser} from '~/sessions.server/auth';
 export const loader = async ({request}: LoaderFunctionArgs) => {
   await requireAuthenticatedUser(request);
 
-  return json(null);
+  return null;
 };
 
 const SessionRoute = () => (

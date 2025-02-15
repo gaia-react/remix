@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention,no-underscore-dangle,vars-on-top,sonarjs/no-var,no-var */
+/* eslint-disable @typescript-eslint/naming-convention,no-underscore-dangle,vars-on-top,no-var,no-console */
 // noinspection ES6ConvertVarToLetConst
 
 import type {SetupServer} from 'msw/node';
@@ -27,7 +27,6 @@ const start = (server: SetupServer) => {
   process.once('SIGTERM', () => server.close());
   process.once('SIGINT', () => server.close());
 
-  // eslint-disable-next-line no-console
   console.info('\u001B[31m', '\n[MSW] Mocking enabled\n', '\u001B[0m');
 };
 

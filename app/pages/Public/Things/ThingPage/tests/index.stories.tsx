@@ -8,7 +8,7 @@ import ThingPage from '../index';
 const meta: Meta = {
   component: ThingPage,
   decorators: [
-    stubs.remix({
+    stubs.reactRouter({
       action: 'components-thingsgrid--default',
       routes: [{path: '/things', storyId: 'components-thingsgrid--default'}],
     }),

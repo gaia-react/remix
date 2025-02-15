@@ -6,7 +6,7 @@ import {twJoin, twMerge} from 'tailwind-merge';
 import Field from '~/components/Form/Field';
 import type {SelectOption} from './types';
 
-export type SelectProps<T = HTMLSelectElement> = {
+export type SelectProps<T = HTMLSelectElement> = SelectHTMLAttributes<T> & {
   classNameIcon?: string;
   classNameLabel?: string;
   classNameSelect?: string;
@@ -21,7 +21,7 @@ export type SelectProps<T = HTMLSelectElement> = {
   type?: never;
   unselected?: string;
   unselectedIcon?: IconProp;
-} & SelectHTMLAttributes<T>;
+};
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (

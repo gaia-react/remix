@@ -36,9 +36,9 @@ const handleResponseError = (error: unknown): ApiError => {
   return {status: 500, statusText: 'Unknown error'};
 };
 
-type AttemptSuccess<T> = [error: undefined, result: T];
 type AttemptError = [error: ApiError, result: undefined];
 type AttemptResult<T> = AttemptError | AttemptSuccess<T>;
+type AttemptSuccess<T> = [error: undefined, result: T];
 
 export const attempt = async <T>(
   fn: () => Promise<T>
