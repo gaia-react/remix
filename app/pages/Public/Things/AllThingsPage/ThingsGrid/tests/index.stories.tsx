@@ -10,7 +10,7 @@ import ThingsGrid from '../index';
 const meta: Meta = {
   component: ThingsGrid,
   decorators: [
-    stubs.remix({
+    stubs.reactRouter({
       action: async ({request}) => {
         const formData = await request.formData();
 

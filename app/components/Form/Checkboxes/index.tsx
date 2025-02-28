@@ -3,14 +3,6 @@ import Checkbox from '../Checkbox';
 import CheckboxRadioGroup from '../CheckboxRadioGroup';
 import Field from '../Field';
 
-type CheckboxOption = {
-  disabled?: boolean;
-  error?: boolean;
-  label: ReactNode;
-  name: string;
-  required?: boolean | string;
-};
-
 export type CheckboxesProps = {
   className?: string;
   classNameGroup?: string;
@@ -21,6 +13,14 @@ export type CheckboxesProps = {
   label?: ReactNode;
   options: CheckboxOption[];
   required?: boolean;
+};
+
+type CheckboxOption = {
+  disabled?: boolean;
+  error?: boolean;
+  label: ReactNode;
+  name: string;
+  required?: boolean | string;
 };
 
 const Checkboxes: FC<CheckboxesProps> = ({

@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Form, useNavigation} from '@remix-run/react';
+import {Form, useNavigation} from 'react-router';
 import {twJoin} from 'tailwind-merge';
 import Button from '~/components/Button';
 import FormActions from '~/components/Form/FormActions';

@@ -5,13 +5,13 @@
  * For more information, see https://remix.run/file-conventions/entry.server
  */
 
+import type {EntryContext} from 'react-router';
+import {renderToPipeableStream} from 'react-dom/server';
 import {I18nextProvider, initReactI18next} from 'react-i18next';
-import type {EntryContext} from '@remix-run/node';
-import {createReadableStreamFromReadable} from '@remix-run/node';
-import {RemixServer} from '@remix-run/react';
+import {ServerRouter} from 'react-router';
+import {createReadableStreamFromReadable} from '@react-router/node';
 import {createInstance} from 'i18next';
 import {isbot} from 'isbot';
-import {renderToPipeableStream} from 'react-dom/server';
 import {PassThrough} from 'node:stream';
 import {getLanguageSession} from '~/sessions.server/language';
 import {startApiMocks} from '../test/msw.server';
@@ -31,7 +31,7 @@ export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  reactRouterContext: EntryContext
 ) {
   const url = new URL(request.url);
 
@@ -49,13 +49,12 @@ export default async function handleRequest(
     return Response.redirect(url.toString(), 301);
   }
 
-  /* Optionally force lowercase URLs to prevent duplicate content for SEO
+  // force lowercase URLs to prevent duplicate content for SEO
   if (url.pathname !== url.pathname.toLowerCase()) {
     url.pathname = url.pathname.toLowerCase();
 
     return Response.redirect(url.toString(), 301);
   }
-  */
 
   const userAgent = request.headers.get('user-agent') ?? '';
 
@@ -65,7 +64,7 @@ export default async function handleRequest(
   const languageCookie = await getLanguageSession(request);
   const detectedLanguage = await i18next.getLocale(request);
   const lng = languageCookie.get() || detectedLanguage;
-  const ns = i18next.getRouteNamespaces(remixContext);
+  const ns = i18next.getRouteNamespaces(reactRouterContext);
 
   await instance.use(initReactI18next).init({
     ...i18n,
@@ -78,7 +77,7 @@ export default async function handleRequest(
 
     const {abort, pipe} = renderToPipeableStream(
       <I18nextProvider i18n={instance}>
-        <RemixServer context={remixContext} url={request.url} />
+        <ServerRouter context={reactRouterContext} url={request.url} />
       </I18nextProvider>,
       {
         [callbackName]: () => {

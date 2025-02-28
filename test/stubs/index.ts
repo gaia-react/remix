@@ -1,4 +1,4 @@
-import remix from './remix-stub';
+import reactRouter from './react-router-stub';
 import state from './state-stub';
 
-export default {remix, state};
+export default {reactRouter, state};

@@ -1,6 +1,6 @@
 import type {Dispatch, FC, ReactNode, SetStateAction} from 'react';
 import {createContext, useContext, useEffect, useRef, useState} from 'react';
-import {useFetcher} from '@remix-run/react';
+import {useFetcher} from 'react-router';
 import type {Maybe} from '~/types';
 import {noop} from '~/utils/function';
 
@@ -52,7 +52,6 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
   initialState,
 }) => {
-  // eslint-disable-next-line sonarjs/hook-use-state
   const state = useState<Maybe<Theme>>(() => {
     // On the server, if we don't have a specified theme then we should
     // return null and the clientThemeCode will set the theme for us

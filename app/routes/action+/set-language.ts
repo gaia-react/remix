@@ -1,5 +1,5 @@
-import type {ActionFunction} from '@remix-run/node';
-import {json, redirect, replace} from '@remix-run/node';
+import type {ActionFunction} from 'react-router';
+import {data, redirect, replace} from 'react-router';
 import {getLanguageSession} from '~/sessions.server/language';
 
 export const action: ActionFunction = async ({request}) => {
@@ -10,7 +10,7 @@ export const action: ActionFunction = async ({request}) => {
   const redirectUrl = form.get('redirectUrl') as string;
 
   if (!['en', 'ja'].includes(language) || !redirectUrl) {
-    return json(
+    return data(
       {
         message: `language value of ${language} is not a valid language`,
         ok: false,

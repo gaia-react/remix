@@ -2,31 +2,7 @@ import type {FC, ReactNode} from 'react';
 import FieldLabel from './FieldLabel';
 import FieldStatus from './FieldStatus';
 
-type WithMaxLength = {
-  maxLength?: number;
-  name: string;
-  type: 'input' | 'password' | 'textarea';
-};
-
-type WithLabel = {
-  maxLength?: never;
-  name: string;
-  type: 'select';
-};
-
-type WithoutLabel = {
-  maxLength?: never;
-  name?: never;
-  type: 'button' | 'checkbox' | 'radio';
-};
-
-type WithValue = {
-  maxLength?: never;
-  name?: never;
-  type: 'value';
-};
-
-type FieldProps = {
+type FieldProps = (WithLabel | WithMaxLength | WithoutLabel | WithValue) & {
   children: ReactNode;
   className?: string;
   classNameDescription?: string;
@@ -40,7 +16,31 @@ type FieldProps = {
   label?: ReactNode;
   length?: number;
   required?: boolean;
-} & (WithLabel | WithMaxLength | WithoutLabel | WithValue);
+};
+
+type WithLabel = {
+  maxLength?: never;
+  name: string;
+  type: 'select';
+};
+
+type WithMaxLength = {
+  maxLength?: number;
+  name: string;
+  type: 'input' | 'password' | 'textarea';
+};
+
+type WithoutLabel = {
+  maxLength?: never;
+  name?: never;
+  type: 'button' | 'checkbox' | 'radio';
+};
+
+type WithValue = {
+  maxLength?: never;
+  name?: never;
+  type: 'value';
+};
 
 const Field: FC<FieldProps> = ({
   children,

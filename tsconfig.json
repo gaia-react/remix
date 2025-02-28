@@ -9,16 +9,17 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    // Vite takes care of building everything, not tsc.
     "noEmit": true,
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "test": ["./test/*"]
     },
     "resolveJsonModule": true,
+    "rootDirs": [".", "./.react-router/types"],
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2022",
-    "types": ["@remix-run/node", "vite/client"]
+    "types": ["@react-router/node", "vite/client"]
   },
   "include": [
     "**/*.ts",
@@ -27,6 +28,7 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx",
+    ".react-router/types/**/*",
     ".storybook/**/*",
     ".playwright/**/*"
   ]

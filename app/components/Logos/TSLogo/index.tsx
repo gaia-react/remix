@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type TSLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type TSLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const TSLogo: FC<TSLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ?? width ?? 512;

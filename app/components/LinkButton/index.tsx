@@ -1,21 +1,21 @@
 import type {AnchorHTMLAttributes, FC} from 'react';
+import {Link, NavLink} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Link, NavLink} from '@remix-run/react';
 import {twJoin, twMerge} from 'tailwind-merge';
 import type {IconUnion, Variant} from '~/components/Button';
 import {ICON_POSITION, ICON_SIZES, SIZES, VARIANTS} from '~/components/Button';
 import type {Size} from '~/types';
 
-type LinkButtonProps = {
-  disabled?: boolean;
-  href?: never;
-  isNav?: boolean;
-  prefetch?: 'intent' | 'none' | 'render';
-  size?: Size;
-  to: string;
-  variant?: Variant;
-} & AnchorHTMLAttributes<HTMLAnchorElement> &
-  IconUnion;
+type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  IconUnion & {
+    disabled?: boolean;
+    href?: never;
+    isNav?: boolean;
+    prefetch?: 'intent' | 'none' | 'render';
+    size?: Size;
+    to: string;
+    variant?: Variant;
+  };
 
 const LinkButton: FC<LinkButtonProps> = ({
   children,
@@ -69,9 +69,9 @@ const LinkButton: FC<LinkButtonProps> = ({
   if (to.startsWith('http')) {
     return (
       <a
+        href={to}
         className={css}
         data-disabled={disabled ? true : undefined}
-        href={to}
         rel="noopener noreferrer"
         tabIndex={disabled ? -1 : undefined}
         target="_blank"
@@ -85,9 +85,9 @@ const LinkButton: FC<LinkButtonProps> = ({
   if (isNav) {
     return (
       <NavLink
+        prefetch={prefetch}
         className={({isActive}) => twMerge(css, !isActive && VARIANTS.tertiary)}
         data-disabled={disabled ? true : undefined}
-        prefetch={prefetch}
         tabIndex={disabled ? -1 : undefined}
         to={to}
         {...props}
@@ -99,9 +99,9 @@ const LinkButton: FC<LinkButtonProps> = ({
 
   return (
     <Link
+      prefetch={prefetch}
       className={css}
       data-disabled={disabled ? true : undefined}
-      prefetch={prefetch}
       tabIndex={disabled ? -1 : undefined}
       to={to}
       {...props}

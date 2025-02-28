@@ -3,7 +3,7 @@ import {forwardRef} from 'react';
 import {twMerge} from 'tailwind-merge';
 import FieldStatus from '../Field/FieldStatus';
 
-export type CheckboxProps<T = HTMLInputElement> = {
+export type CheckboxProps<T = HTMLInputElement> = InputHTMLAttributes<T> & {
   classNameDescription?: string;
   classNameInput?: string;
   classNameLabel?: string;
@@ -12,7 +12,7 @@ export type CheckboxProps<T = HTMLInputElement> = {
   label?: ReactNode;
   name: string;
   type?: never;
-} & InputHTMLAttributes<T>;
+};
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (

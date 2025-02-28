@@ -3,6 +3,7 @@ node_modules
 /public
 !.storybook
 !.playwright
+!.react.router
 package.json
 package-lock.json
 tsconfig.json

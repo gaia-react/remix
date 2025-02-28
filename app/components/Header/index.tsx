@@ -1,6 +1,6 @@
 import type {FC} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Link} from '@remix-run/react';
+import {Link} from 'react-router';
 import AppVersion from 'app/components/AppVersion';
 import {twMerge} from 'tailwind-merge';
 import DarkModeToggle from '~/components/DarkModeToggle';

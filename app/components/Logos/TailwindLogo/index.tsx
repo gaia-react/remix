@@ -1,11 +1,8 @@
 import type {FC, SVGProps} from 'react';
 import {useId} from 'react';
 
-type TailwindLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type TailwindLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const TailwindLogo: FC<TailwindLogoProps> = ({height, width, ...props}) => {
   const id = useId();

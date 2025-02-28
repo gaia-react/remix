@@ -1,4 +1,4 @@
-import {useForm} from '@rvf/remix';
+import {useForm} from '@rvf/react-router';
 import {withZod} from '@rvf/zod';
 import type {Meta, StoryFn} from '@storybook/react';
 import stubs from 'test/stubs';
@@ -7,7 +7,7 @@ import YearMonthDay from '../index';
 
 const meta: Meta = {
   component: YearMonthDay,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
   },

@@ -1,5 +1,5 @@
 import {useTranslation} from 'react-i18next';
-import {useForm} from '@rvf/remix';
+import {useForm} from '@rvf/react-router';
 import {withZod} from '@rvf/zod';
 import type {Meta, StoryFn} from '@storybook/react';
 import stubs from 'test/stubs';
@@ -10,7 +10,7 @@ import InputPassword from '../index';
 
 const meta: Meta = {
   component: InputPassword,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
   },

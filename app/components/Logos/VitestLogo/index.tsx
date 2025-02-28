@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type VitestLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type VitestLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const VitestLogo: FC<VitestLogoProps> = ({height, width, ...props}) => {
   const adjustedWidth = height ?? width ?? 165;

@@ -13,7 +13,7 @@ type StateProps = {
   user?: Maybe<User>;
 };
 
-const State: FC<{children: ReactNode} & StateProps> = ({
+const State: FC<StateProps & {children: ReactNode}> = ({
   children,
   example,
   theme,

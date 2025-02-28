@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type StorybookLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type StorybookLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const StorybookLogo: FC<StorybookLogoProps> = ({
   className,

@@ -1,6 +1,6 @@
 import type {FC, FormEvent} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useFetcher, useLocation} from '@remix-run/react';
+import {useFetcher, useLocation} from 'react-router';
 import {twMerge} from 'tailwind-merge';
 
 const OPTIONS = [

@@ -1,10 +1,7 @@
 import type {FC, SVGProps} from 'react';
 
-type ESLintLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type ESLintLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const ESLintLogo: FC<ESLintLogoProps> = ({
   className,

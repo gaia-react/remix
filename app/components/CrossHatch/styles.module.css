@@ -2,7 +2,8 @@
   --line-color: 48, 48, 48;
 
   background-color: transparent;
-  background-image: repeating-linear-gradient(
+  background-image:
+    repeating-linear-gradient(
       45deg,
       rgba(var(--line-color), 0),
       rgba(var(--line-color), 0) 5px,

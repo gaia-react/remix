@@ -1,10 +1,13 @@
 node_modules
 
-# remix
+# react-router
 /.cache
 /build
 /public/build
+.react-router/
+
 .env
+!.env.example
 
 # IDEs
 .idea

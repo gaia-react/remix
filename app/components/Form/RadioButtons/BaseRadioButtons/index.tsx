@@ -3,14 +3,15 @@ import CheckboxRadioGroup from '~/components/Form/CheckboxRadioGroup';
 import InputRadio from '~/components/Form/InputRadio';
 import type {RadioOption} from '~/components/Form/types';
 
-export type BaseRadioButtonsProps<T = HTMLInputElement> = {
-  classNameLabel?: string;
-  error?: ReactNode;
-  isHorizontal?: boolean;
-  name: string;
-  options: RadioOption[];
-  type?: never;
-} & InputHTMLAttributes<T>;
+export type BaseRadioButtonsProps<T = HTMLInputElement> =
+  InputHTMLAttributes<T> & {
+    classNameLabel?: string;
+    error?: ReactNode;
+    isHorizontal?: boolean;
+    name: string;
+    options: RadioOption[];
+    type?: never;
+  };
 
 const BaseRadioButtons: FC<BaseRadioButtonsProps> = ({
   children,

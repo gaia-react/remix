@@ -4,7 +4,7 @@ import Checkbox from '../index';
 
 const meta: Meta = {
   component: Checkbox,
-  decorators: [stubs.remix()],
+  decorators: [stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
   },

@@ -1,11 +1,8 @@
 import type {FC, SVGProps} from 'react';
 import {useId} from 'react';
 
-type GaiaLogoProps = (
-  | {height?: never; width?: number}
-  | {height?: number; width?: never}
-) &
-  Omit<SVGProps<SVGSVGElement>, 'height' | 'width'>;
+type GaiaLogoProps = Omit<SVGProps<SVGSVGElement>, 'height' | 'width'> &
+  ({height?: never; width?: number} | {height?: number; width?: never});
 
 const GaiaLogo: FC<GaiaLogoProps> = ({
   fill = 'gradient',

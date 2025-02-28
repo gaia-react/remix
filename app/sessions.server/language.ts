@@ -1,4 +1,4 @@
-import {createCookieSessionStorage} from '@remix-run/node';
+import {createCookieSessionStorage} from 'react-router';
 import {env} from '~/env.server';
 
 export const languageStorage = createCookieSessionStorage({

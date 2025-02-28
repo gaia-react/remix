@@ -4,7 +4,7 @@ import ExampleConsumer from '../index';
 
 const meta: Meta = {
   component: ExampleConsumer,
-  decorators: [stubs.state(), stubs.remix()],
+  decorators: [stubs.state(), stubs.reactRouter()],
   parameters: {
     controls: {hideNoControlsWarning: true},
     wrap: 'p-4',
