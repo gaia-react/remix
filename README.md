@@ -18,20 +18,20 @@ The Developer Experience (DX) is designed to be top-notch.
 
 GAIA React has many great features built-in:
 
-- Built with [Remix](https://remix.run/), the best full-stack React framework for the modern web
-- [TailwindCSS](https://tailwindcss.com/) for styling, along with CSS Module support
+- Built with [React Router 7](https://reactrouter.com/), a fantastic full-stack React framework for the modern web
+- [TailwindCSS](https://tailwindcss.com/) for styling
 - [Zod](https://zod.dev/) for data validation
 - Robust ESLint ruleset along with [Prettier](https://prettier.io/) and [Stylelint](https://stylelint.io/)
 - [Husky](https://typicode.github.io/husky/) and [Lint-Staged](https://github.com/lint-staged/lint-staged) for pre-commit checks to ensure code quality
 - A complete testing suite with [Vitest](https://vitest.dev), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), and [PlayWright](https://playwright.dev/docs/intro)
-- [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a [Remix Stub](https://remix.run/docs/en/main/utils/create-remix-stub) decorator included
+- [Storybook](https://storybook.js.org/) and [Chromatic](https://chromatic.com/), with a [React Router Stub](https://reactrouter.com/start/framework/testing) decorator included
 - [Mock Service Worker](https://mswjs.io/) with working handlers, and [msw/data](https://github.com/mswjs/data) for data mocking
 - [remix-auth](https://remix.run/resources/remix-auth) with a working authentication example
-- Toast notifications with [remix-toast](https://remix.run/resources/remix-toast) and [react-toastify](https://fkhadra.github.io/react-toastify/introduction)
+- Toast notifications with [remix-toast](https://remix.run/resources/remix-toast) and [Sonner](https://sonner.emilkowal.ski/)
 - Internationalization via [remix-i18next](https://github.com/sergiodxa/remix-i18next) with sample files already in place
 - [RVF](https://www.rvf-js.io/) for form management and validation
 - [FontAwesome](https://fontawesome.com/) icons
-- A convenient and flexible way to access your API services built on [Ky](https://github.com/sindresorhus/ky)
+- A convenient and flexible wrapper around fetch that simplifies API calls
 - Many example components, ready for you to use and modify
 - Useful utility functions and hooks
 - Dark mode support
@@ -56,18 +56,20 @@ Make sure you have [Node.js](https://nodejs.org/en/) >=20.17.0 LTS installed, pr
 All you need to do is run this installation command and get to work.
 
 ```sh
-npx create-remix@latest --template gaia-react/remix
+npx create-react-router@latest --template gaia-react/react-router
 ```
 
-When prompted, to install packages and run the remix.init, select "Yes".
-
-If you choose "No", you will need to run these two commands manually after the installation:
+### Install packages
 
 ```sh
 npm install
-
-npx remix init
 ```
+
+Duplicate the `.env.example` file and name it `.env`.
+
+### Setup Fix on Save in your IDE
+
+Follow these [instructions](/docs/tech-stack/code-quality/#setup-fix-on-save).
 
 ## Development
 
@@ -79,7 +81,7 @@ Here's how to develop with GAIA.
 npm run storybook
 ```
 
-### Remix
+### React Router 7
 
 ```sh
 npm run dev
@@ -87,7 +89,7 @@ npm run dev
 
 ### Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) configured, with some configuration and utilities, which you can change to suit your project.
+This template comes with [Tailwind CSS](https://v3.tailwindcss.com/) configured, with some configuration and utilities, which you can change to suit your project.
 
 See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
 
@@ -152,7 +154,7 @@ Then run the app in production mode:
 npm start
 ```
 
-You'll need to pick a host to deploy it to. Jacob Paris wrote a [great article](https://www.jacobparis.com/content/where-to-host-remix) on where to host your Remix app.
+You'll need to pick a host to deploy it to. Jacob Paris wrote a [great article](https://www.jacobparis.com/content/where-to-host-remix) on where to host your React Router 7 app.
 
 ### DIY
 
